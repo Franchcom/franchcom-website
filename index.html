@@ -6,10 +6,8 @@
 <title>FranchCom – IT- & Security-Lösungen für KMU, Industrie & öffentliche Einrichtungen</title>
 <meta name="description" content="FranchCom ist Ihr IT-Partner in Österreich: IT-Infrastruktur, Netzwerktechnik, Server, IT-Security und mobile Videoüberwachung. Persönlich. Sicher. Seit über 20 Jahren." />
 <meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#0b1f3a" />
+<meta name="theme-color" content="#0b1220" />
 <link rel="canonical" href="https://franchcom.at/" />
-
-<!-- Open Graph / Social -->
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="de_AT" />
 <meta property="og:site_name" content="FranchCom" />
@@ -17,12 +15,9 @@
 <meta property="og:description" content="IT-Infrastruktur, Netzwerke, Server, IT-Security & mobile Videoüberwachung. Persönlich. Sicher. Seit über 20 Jahren." />
 <meta property="og:url" content="https://franchcom.at/" />
 <meta name="twitter:card" content="summary_large_image" />
-
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-<!-- Structured data: LocalBusiness -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,131 +32,148 @@
   "slogan": "IT & Security. Persönlich. Sicher. Seit über 20 Jahren."
 }
 </script>
-
 <style>
   :root{
+    --ink:#0b1220;
     --navy:#0b1f3a;
-    --navy-2:#102a4c;
-    --blue:#1e6fd9;
-    --cyan:#22c1c3;
-    --ink:#0f1b2d;
     --slate:#4a5a70;
-    --muted:#6b7a90;
-    --line:#e6ebf2;
+    --muted:#7183a0;
+    --line:#e8eef6;
     --bg:#ffffff;
-    --bg-soft:#f5f8fc;
-    --radius:16px;
-    --shadow:0 10px 30px rgba(11,31,58,.08);
-    --shadow-lg:0 24px 60px rgba(11,31,58,.16);
+    --bg-soft:#f5f9fd;
+    --teal:#12b8a6;
+    --cyan:#06b6d4;
+    --emerald:#10b981;
+    --grad:linear-gradient(120deg,#06b6d4 0%,#12b8a6 50%,#10b981 100%);
+    --grad-soft:linear-gradient(120deg,rgba(6,182,212,.14),rgba(16,185,129,.14));
+    --radius:18px;
+    --shadow:0 12px 34px rgba(11,31,58,.08);
+    --shadow-lg:0 30px 70px rgba(6,120,110,.18);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    color:var(--ink);background:var(--bg);line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
+  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);
+    background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
-  section{padding:96px 0}
-  h1,h2,h3{line-height:1.15;letter-spacing:-.02em;color:var(--navy)}
-  h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px}
-  .lead{font-size:18px;color:var(--slate);max-width:640px}
-  .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+  section{padding:100px 0;position:relative}
+  h1,h2,h3{line-height:1.12;letter-spacing:-.025em;color:var(--ink)}
+  h2{font-size:clamp(30px,4.2vw,44px);font-weight:800;margin-bottom:16px}
+  .lead{font-size:18px;color:var(--slate);max-width:660px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--teal);margin-bottom:16px;
+    background:var(--grad-soft);padding:7px 14px;border-radius:999px}
+  .gradtext{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
   /* Header */
-  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);
-    backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--navy)}
-  .brand .logo{width:34px;height:34px;border-radius:9px;
-    background:linear-gradient(135deg,var(--blue),var(--cyan));
-    display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);
+    backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:20px}
+  .brand .logo{width:36px;height:36px;border-radius:10px;background:var(--grad);
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px;box-shadow:0 6px 16px rgba(18,184,166,.4)}
   .brand small{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.06em}
   .menu{display:flex;gap:30px;align-items:center}
-  .menu a{font-size:15px;font-weight:500;color:var(--slate)}
-  .menu a:hover{color:var(--navy)}
+  .menu a{font-size:15px;font-weight:500;color:var(--slate);position:relative}
+  .menu a:hover{color:var(--ink)}
   .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;
-    padding:11px 20px;border-radius:999px;transition:.2s;cursor:pointer;border:none}
-  .btn-primary{background:var(--navy);color:#fff}
-  .btn-primary:hover{background:var(--navy-2);transform:translateY(-1px)}
-  .btn-ghost{background:transparent;color:var(--navy);border:1px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+    padding:12px 22px;border-radius:999px;transition:.25s;cursor:pointer;border:none}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 24px rgba(18,184,166,.32)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(18,184,166,.42)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
   .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
-  .menu-toggle span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0;border-radius:2px}
+  .menu-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
 
   /* Hero */
-  .hero{position:relative;overflow:hidden;
-    background:radial-gradient(1200px 600px at 80% -10%,rgba(34,193,195,.18),transparent 60%),
-               linear-gradient(180deg,#0b1f3a 0%,#102a4c 100%);
-    color:#fff;padding:110px 0 120px}
-  .hero .eyebrow{color:var(--cyan)}
-  .hero h1{color:#fff;font-size:clamp(34px,5.4vw,58px);font-weight:800;max-width:780px}
-  .hero p{color:#c9d6ea;font-size:19px;max-width:600px;margin-top:20px}
-  .hero .cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
-  .hero .btn-primary{background:#fff;color:var(--navy)}
-  .hero .btn-primary:hover{background:#eaf1fb}
-  .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.25)}
-  .hero .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
-  .stats{display:flex;gap:44px;margin-top:56px;flex-wrap:wrap}
-  .stat b{display:block;font-size:34px;font-weight:800;color:#fff;letter-spacing:-.02em}
-  .stat span{font-size:14px;color:#9fb2cd}
+  .hero{padding:120px 0 130px;overflow:hidden}
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);z-index:-1;opacity:.6}
+  .hero::before{width:520px;height:520px;top:-140px;right:-120px;
+    background:radial-gradient(circle,rgba(6,182,212,.55),transparent 70%);animation:float1 14s ease-in-out infinite}
+  .hero::after{width:460px;height:460px;bottom:-160px;left:-120px;
+    background:radial-gradient(circle,rgba(16,185,129,.45),transparent 70%);animation:float2 16s ease-in-out infinite}
+  @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+  @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
+  .hero h1{font-size:clamp(36px,5.6vw,62px);font-weight:900;max-width:840px;letter-spacing:-.03em}
+  .hero p{color:var(--slate);font-size:19px;max-width:620px;margin-top:22px}
+  .hero .cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+  .stats{display:flex;gap:16px;margin-top:60px;flex-wrap:wrap}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 26px;box-shadow:var(--shadow);min-width:150px}
+  .stat b{display:block;font-size:32px;font-weight:800;letter-spacing:-.02em}
+  .stat b span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat small{font-size:13.5px;color:var(--muted)}
 
-  /* Services grid */
+  /* Services */
   .grid{display:grid;gap:22px;grid-template-columns:repeat(3,1fr)}
   .card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);
-    padding:30px;transition:.25s;box-shadow:var(--shadow)}
-  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent}
-  .card .ico{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
-    background:var(--bg-soft);color:var(--blue);margin-bottom:18px}
+    padding:30px;transition:.3s;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--grad);
+    transform:scaleX(0);transform-origin:left;transition:transform .35s}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
+  .card:hover::before{transform:scaleX(1)}
+  .card .ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+    background:var(--grad-soft);color:var(--teal);margin-bottom:18px}
   .card h3{font-size:19px;font-weight:700;margin-bottom:10px}
   .card ul{list-style:none;margin-top:12px}
   .card li{font-size:14.5px;color:var(--slate);padding-left:22px;position:relative;margin:7px 0}
-  .card li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;
-    border-radius:50%;background:var(--cyan)}
+  .card li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;
+    background:var(--grad)}
 
-  /* Highlight (Videoüberwachung) */
-  .feature{background:var(--bg-soft)}
+  /* Feature */
+  .feature{background:
+    radial-gradient(700px 400px at 10% 20%,rgba(6,182,212,.08),transparent 60%),
+    var(--bg-soft)}
   .feature .inner{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
   .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
-    color:var(--navy);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;margin-bottom:18px}
-  .checklist{list-style:none;margin-top:22px}
-  .checklist li{display:flex;gap:12px;align-items:flex-start;margin:14px 0;font-size:16px;color:var(--slate)}
-  .checklist svg{flex:none;color:var(--cyan);margin-top:3px}
-  .panel{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:20px;
-    padding:38px;color:#fff;box-shadow:var(--shadow-lg)}
-  .panel h3{color:#fff;font-size:22px;margin-bottom:10px}
-  .panel p{color:#c9d6ea;font-size:15px}
-  .panel .row{display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.1)}
+    font-weight:700;font-size:13px;padding:8px 15px;border-radius:999px;margin-bottom:18px;box-shadow:var(--shadow)}
+  .checklist{list-style:none;margin-top:24px}
+  .checklist li{display:flex;gap:12px;align-items:flex-start;margin:15px 0;font-size:16px;color:var(--slate)}
+  .checklist .ck{flex:none;width:26px;height:26px;border-radius:8px;background:var(--grad);display:grid;place-items:center;color:#fff;margin-top:1px}
+  .panel{background:linear-gradient(150deg,#0b1f3a,#0b1220);border-radius:22px;padding:38px;color:#fff;
+    box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .panel::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;top:-80px;right:-60px;
+    background:radial-gradient(circle,rgba(18,184,166,.5),transparent 70%);filter:blur(40px)}
+  .panel h3{color:#fff;font-size:22px;margin-bottom:8px}
+  .panel>p{color:#b9c7dd;font-size:15px}
+  .panel .row{display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid rgba(255,255,255,.1);position:relative}
   .panel .row:first-of-type{border-top:none;margin-top:14px}
-  .panel .dot{width:38px;height:38px;border-radius:10px;background:rgba(34,193,195,.16);
-    display:grid;place-items:center;color:var(--cyan);flex:none}
+  .panel .dot{width:40px;height:40px;border-radius:11px;background:rgba(18,184,166,.18);
+    display:grid;place-items:center;color:var(--teal);flex:none}
 
   /* Customers */
-  .cust{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
-  .cust .card h3{color:var(--navy)}
-  .cust .tag{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase}
+  .cust{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+  .cust .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
   /* Why us */
-  .why{background:var(--navy);color:#fff}
+  .why{background:linear-gradient(160deg,#0b1f3a,#0b1220);color:#fff;overflow:hidden}
+  .why::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;top:-200px;right:-150px;
+    background:radial-gradient(circle,rgba(6,182,212,.16),transparent 70%);filter:blur(60px)}
   .why h2{color:#fff}
-  .why .lead{color:#c9d6ea}
+  .why .lead{color:#b9c7dd}
   .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px}
   .why-item{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px}
-  .why-item .n{font-weight:800;color:var(--cyan);font-size:15px;flex:none}
+    border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:26px;transition:.3s}
+  .why-item:hover{background:rgba(255,255,255,.07);transform:translateY(-3px)}
+  .why-item .n{font-weight:800;font-size:15px;flex:none;background:var(--grad);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
   .why-item h4{font-size:17px;margin-bottom:6px;color:#fff}
-  .why-item p{font-size:14.5px;color:#a9bad2}
+  .why-item p{font-size:14.5px;color:#9fb2cd}
 
   /* Contact */
   .contact .inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  .contact-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:20px;padding:36px}
-  .contact-card a{display:flex;align-items:center;gap:14px;padding:16px 0;font-weight:600;color:var(--navy);
+  .contact-card{background:var(--grad);border-radius:22px;padding:8px;box-shadow:var(--shadow-lg)}
+  .contact-card .in{background:#fff;border-radius:16px;padding:30px}
+  .contact-card a{display:flex;align-items:center;gap:14px;padding:16px 0;font-weight:600;color:var(--ink);
     border-bottom:1px solid var(--line);font-size:17px}
   .contact-card a:last-child{border-bottom:none}
-  .contact-card .ico{width:44px;height:44px;border-radius:11px;background:#fff;border:1px solid var(--line);
-    display:grid;place-items:center;color:var(--blue);flex:none}
+  .contact-card .ico{width:46px;height:46px;border-radius:12px;background:var(--grad-soft);
+    display:grid;place-items:center;color:var(--teal);flex:none}
 
   /* Footer */
   footer{background:#08182e;color:#8ea3bf;padding:56px 0 30px;font-size:14px}
@@ -172,14 +184,13 @@
   .foot-bot{padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
   @media(max-width:860px){
-    section{padding:64px 0}
+    section{padding:66px 0}
     .menu{display:none}
     .menu-toggle{display:block}
-    .menu.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;
+    .menu.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;
       background:#fff;padding:20px 24px;gap:16px;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
     .grid,.cust,.why-grid{grid-template-columns:1fr}
     .feature .inner,.contact .inner{grid-template-columns:1fr;gap:34px}
-    .stats{gap:28px}
   }
 </style>
 </head>
@@ -204,177 +215,130 @@
 
 <main id="top">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow">Ihr IT-Partner in Österreich</span>
-      <h1>IT- &amp; Security-Lösungen für KMU, Industrie und öffentliche Einrichtungen</h1>
-      <p>Persönliche Beratung, professionelle Umsetzung und der zuverlässige Betrieb moderner IT- und Security-Infrastrukturen. Persönlich. Sicher. Seit über 20 Jahren.</p>
-      <div class="cta">
+      <span class="eyebrow reveal">Ihr IT-Partner in Österreich</span>
+      <h1 class="reveal">IT- &amp; Security-Lösungen für <span class="gradtext">KMU, Industrie</span> und öffentliche Einrichtungen</h1>
+      <p class="reveal">Persönliche Beratung, professionelle Umsetzung und der zuverlässige Betrieb moderner IT- und Security-Infrastrukturen. Persönlich. Sicher. Seit über 20 Jahren.</p>
+      <div class="cta reveal">
         <a href="#kontakt" class="btn btn-primary">Jetzt Kontakt aufnehmen →</a>
         <a href="#leistungen" class="btn btn-ghost">Unsere Leistungen</a>
       </div>
-      <div class="stats">
-        <div class="stat"><b>20+</b><span>Jahre Erfahrung</span></div>
-        <div class="stat"><b>360°</b><span>IT aus einer Hand</span></div>
-        <div class="stat"><b>AT</b><span>Regional &amp; persönlich</span></div>
+      <div class="stats reveal">
+        <div class="stat"><b><span>20+</span></b><small>Jahre Erfahrung</small></div>
+        <div class="stat"><b><span>360°</span></b><small>IT aus einer Hand</small></div>
+        <div class="stat"><b><span>AT</span></b><small>Regional &amp; persönlich</small></div>
       </div>
     </div>
   </section>
 
-  <!-- LEISTUNGEN -->
   <section id="leistungen">
     <div class="wrap">
-      <span class="eyebrow">Leistungen</span>
-      <h2>IT-Services aus einer Hand</h2>
-      <p class="lead">Von der Beratung über die Planung bis zum laufenden Betrieb – wir kümmern uns um Ihre gesamte IT- und Security-Infrastruktur.</p>
-
+      <span class="eyebrow reveal">Leistungen</span>
+      <h2 class="reveal">IT-Services aus einer Hand</h2>
+      <p class="lead reveal">Von der Beratung über die Planung bis zum laufenden Betrieb – wir kümmern uns um Ihre gesamte IT- und Security-Infrastruktur.</p>
       <div class="grid" style="margin-top:44px">
-        <div class="card">
+        <div class="card reveal">
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
           <h3>IT-Services &amp; Infrastruktur</h3>
-          <ul>
-            <li>IT-Beratung &amp; Bedarfsanalyse</li>
-            <li>Planung, Installation &amp; Integration</li>
-            <li>Laufender Service, Wartung &amp; Support</li>
-            <li>Arbeitsplatz- &amp; Applikationsbetreuung</li>
-          </ul>
+          <ul><li>IT-Beratung &amp; Bedarfsanalyse</li><li>Planung, Installation &amp; Integration</li><li>Laufender Service, Wartung &amp; Support</li><li>Arbeitsplatz- &amp; Applikationsbetreuung</li></ul>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M12 13v3"/></svg></div>
           <h3>Netzwerktechnik</h3>
-          <ul>
-            <li>LAN-, WAN- &amp; WLAN-Lösungen</li>
-            <li>Standortvernetzung &amp; Integration</li>
-            <li>Redundante, ausfallsichere Konzepte</li>
-            <li>Monitoring &amp; Performance-Optimierung</li>
-          </ul>
+          <ul><li>LAN-, WAN- &amp; WLAN-Lösungen</li><li>Standortvernetzung &amp; Integration</li><li>Redundante, ausfallsichere Konzepte</li><li>Monitoring &amp; Performance-Optimierung</li></ul>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div>
           <h3>Server- &amp; Systemlösungen</h3>
-          <ul>
-            <li>Serverinstallation &amp; Systemintegration</li>
-            <li>Virtualisierung &amp; Hochverfügbarkeit</li>
-            <li>Sicherer Betrieb kritischer Systeme</li>
-            <li>Schutz sensibler Unternehmensdaten</li>
-          </ul>
+          <ul><li>Serverinstallation &amp; Systemintegration</li><li>Virtualisierung &amp; Hochverfügbarkeit</li><li>Sicherer Betrieb kritischer Systeme</li><li>Schutz sensibler Unternehmensdaten</li></ul>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></div>
           <h3>IT-Security</h3>
-          <ul>
-            <li>Umfassende IT-Sicherheitskonzepte</li>
-            <li>Firewalls &amp; Zugriffskontrollen</li>
-            <li>Netzwerk- &amp; Serversicherheit</li>
-            <li>Endpoint- &amp; Zugangsschutz</li>
-          </ul>
+          <ul><li>Umfassende IT-Sicherheitskonzepte</li><li>Firewalls &amp; Zugriffskontrollen</li><li>Netzwerk- &amp; Serversicherheit</li><li>Endpoint- &amp; Zugangsschutz</li></ul>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></div>
           <h3>Mobile Videoüberwachung</h3>
-          <ul>
-            <li>Echtzeit-Videoüberwachung</li>
-            <li>Verschlüsselte Datenübertragung</li>
-            <li>Manipulationssichere Aufzeichnung</li>
-            <li>Nahtlose Integration in Ihre IT</li>
-          </ul>
+          <ul><li>Echtzeit-Videoüberwachung</li><li>Verschlüsselte Datenübertragung</li><li>Manipulationssichere Aufzeichnung</li><li>Nahtlose Integration in Ihre IT</li></ul>
         </div>
-        <div class="card">
+        <div class="card reveal">
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M8 12h8M12 8v8"/></svg></div>
           <h3>Persönlicher Support</h3>
-          <ul>
-            <li>Ein Ansprechpartner für alles</li>
-            <li>Schnelle Reaktionszeiten</li>
-            <li>Individuelle, skalierbare Lösungen</li>
-            <li>Langfristige Partnerschaft</li>
-          </ul>
+          <ul><li>Ein Ansprechpartner für alles</li><li>Schnelle Reaktionszeiten</li><li>Individuelle, skalierbare Lösungen</li><li>Langfristige Partnerschaft</li></ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- VIDEOÜBERWACHUNG -->
   <section id="video" class="feature">
     <div class="wrap inner">
-      <div>
+      <div class="reveal">
         <span class="badge">🔒 BlackBoxer · Mobile Videoüberwachung</span>
-        <h2>Videoüberwachung für sicherheitskritische Einsätze</h2>
+        <h2>Videoüberwachung für <span class="gradtext">sicherheitskritische</span> Einsätze</h2>
         <p class="lead">Mobile Videoüberwachung für Anwendungen wie Geld- und Werttransporte sowie Personen- und Objektschutz – in Echtzeit, verschlüsselt und manipulationssicher.</p>
         <ul class="checklist">
-          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg> Sichere und verschlüsselte Datenübertragung</li>
-          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg> Manipulationssichere Aufzeichnung</li>
-          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg> Nahtlose Integration in bestehende Infrastruktur</li>
+          <li><span class="ck"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Sichere und verschlüsselte Datenübertragung</li>
+          <li><span class="ck"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Manipulationssichere Aufzeichnung</li>
+          <li><span class="ck"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span> Nahtlose Integration in bestehende Infrastruktur</li>
         </ul>
       </div>
-      <div class="panel">
+      <div class="panel reveal">
         <h3>BlackBoxer</h3>
         <p>Unsere spezialisierte Lösung für den mobilen Einsatz.</p>
-        <div class="row"><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></span><div><b style="color:#fff">Echtzeit</b><br><span style="color:#a9bad2;font-size:14px">Live-Übertragung im Einsatz</span></div></div>
-        <div class="row"><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b style="color:#fff">Verschlüsselt</b><br><span style="color:#a9bad2;font-size:14px">Ende-zu-Ende gesicherte Daten</span></div></div>
-        <div class="row"><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></span><div><b style="color:#fff">Manipulationssicher</b><br><span style="color:#a9bad2;font-size:14px">Lückenlose Beweissicherung</span></div></div>
+        <div class="row"><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></span><div><b style="color:#fff">Echtzeit</b><br><span style="color:#9fb2cd;font-size:14px">Live-Übertragung im Einsatz</span></div></div>
+        <div class="row"><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b style="color:#fff">Verschlüsselt</b><br><span style="color:#9fb2cd;font-size:14px">Ende-zu-Ende gesicherte Daten</span></div></div>
+        <div class="row"><span class="dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></span><div><b style="color:#fff">Manipulationssicher</b><br><span style="color:#9fb2cd;font-size:14px">Lückenlose Beweissicherung</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- KUNDEN -->
   <section id="kunden">
     <div class="wrap">
-      <span class="eyebrow">Kunden</span>
-      <h2>Lösungen für jede Anforderung</h2>
-      <p class="lead">Wir betreuen Unternehmen und Organisationen jeder Größe – zugeschnitten auf ihre Anforderungen.</p>
+      <span class="eyebrow reveal">Kunden</span>
+      <h2 class="reveal">Lösungen für jede Anforderung</h2>
+      <p class="lead reveal">Wir betreuen Unternehmen und Organisationen jeder Größe – zugeschnitten auf ihre Anforderungen.</p>
       <div class="cust">
-        <div class="card">
-          <span class="tag">KMU</span>
-          <h3 style="margin-top:8px">Kleine &amp; mittlere Unternehmen</h3>
-          <p style="color:var(--slate);font-size:15px;margin-top:8px">Wirtschaftliche, skalierbare Lösungen mit persönlicher Betreuung.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Industrie</span>
-          <h3 style="margin-top:8px">Industriebetriebe</h3>
-          <p style="color:var(--slate);font-size:15px;margin-top:8px">Robuste, hochverfügbare Lösungen für komplexe Umgebungen.</p>
-        </div>
-        <div class="card">
-          <span class="tag">Öffentlich</span>
-          <h3 style="margin-top:8px">Öffentliche Einrichtungen</h3>
-          <p style="color:var(--slate);font-size:15px;margin-top:8px">Sichere, zuverlässige IT-Infrastruktur für den langfristigen Betrieb.</p>
-        </div>
+        <div class="card reveal"><span class="tag">KMU</span><h3 style="margin-top:8px">Kleine &amp; mittlere Unternehmen</h3><p style="color:var(--slate);font-size:15px;margin-top:8px">Wirtschaftliche, skalierbare Lösungen mit persönlicher Betreuung.</p></div>
+        <div class="card reveal"><span class="tag">Industrie</span><h3 style="margin-top:8px">Industriebetriebe</h3><p style="color:var(--slate);font-size:15px;margin-top:8px">Robuste, hochverfügbare Lösungen für komplexe Umgebungen.</p></div>
+        <div class="card reveal"><span class="tag">Öffentlich</span><h3 style="margin-top:8px">Öffentliche Einrichtungen</h3><p style="color:var(--slate);font-size:15px;margin-top:8px">Sichere, zuverlässige IT-Infrastruktur für den langfristigen Betrieb.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- WARUM WIR -->
   <section id="warum" class="why">
     <div class="wrap">
-      <span class="eyebrow" style="color:var(--cyan)">Warum FranchCom</span>
-      <h2>Verlässlicher Partner statt kurzfristiger Lösungen</h2>
-      <p class="lead">Wir setzen auf langfristige Partnerschaften, hohe technische Kompetenz und persönlichen Service.</p>
+      <span class="eyebrow reveal" style="background:rgba(18,184,166,.16)">Warum FranchCom</span>
+      <h2 class="reveal">Verlässlicher Partner statt <span class="gradtext">kurzfristiger</span> Lösungen</h2>
+      <p class="lead reveal">Wir setzen auf langfristige Partnerschaften, hohe technische Kompetenz und persönlichen Service.</p>
       <div class="why-grid">
-        <div class="why-item"><span class="n">01</span><div><h4>Über 20 Jahre Erfahrung</h4><p>Etablierter IT-Dienstleister in Österreich mit langjähriger Praxis.</p></div></div>
-        <div class="why-item"><span class="n">02</span><div><h4>Persönliche Betreuung</h4><p>Individuelle Beratung und feste Ansprechpartner für Ihr Unternehmen.</p></div></div>
-        <div class="why-item"><span class="n">03</span><div><h4>Hohe Fachkompetenz</h4><p>Breites Know-how über alle IT- und Security-Bereiche hinweg.</p></div></div>
-        <div class="why-item"><span class="n">04</span><div><h4>Zuverlässig &amp; nachhaltig</h4><p>Stabile IT- und Security-Lösungen, auf die Sie sich verlassen können.</p></div></div>
+        <div class="why-item reveal"><span class="n">01</span><div><h4>Über 20 Jahre Erfahrung</h4><p>Etablierter IT-Dienstleister in Österreich mit langjähriger Praxis.</p></div></div>
+        <div class="why-item reveal"><span class="n">02</span><div><h4>Persönliche Betreuung</h4><p>Individuelle Beratung und feste Ansprechpartner für Ihr Unternehmen.</p></div></div>
+        <div class="why-item reveal"><span class="n">03</span><div><h4>Hohe Fachkompetenz</h4><p>Breites Know-how über alle IT- und Security-Bereiche hinweg.</p></div></div>
+        <div class="why-item reveal"><span class="n">04</span><div><h4>Zuverlässig &amp; nachhaltig</h4><p>Stabile IT- und Security-Lösungen, auf die Sie sich verlassen können.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- KONTAKT -->
   <section id="kontakt" class="contact">
     <div class="wrap inner">
-      <div>
+      <div class="reveal">
         <span class="eyebrow">Kontakt</span>
-        <h2>Sprechen wir über Ihre IT</h2>
+        <h2>Sprechen wir über <span class="gradtext">Ihre IT</span></h2>
         <p class="lead">Sie erreichen uns persönlich – wir melden uns schnell zurück und finden gemeinsam die passende Lösung.</p>
       </div>
-      <div class="contact-card">
-        <a href="mailto:office@franchcom.at">
-          <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
-          office@franchcom.at
-        </a>
-        <a href="tel:+436648587170">
-          <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h4l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2z"/></svg></span>
-          +43 664 858 71 70
-        </a>
+      <div class="contact-card reveal">
+        <div class="in">
+          <a href="mailto:office@franchcom.at">
+            <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+            office@franchcom.at
+          </a>
+          <a href="tel:+436648587170">
+            <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h4l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2z"/></svg></span>
+            +43 664 858 71 70
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -398,7 +362,7 @@
       </div>
     </div>
     <div class="foot-bot">
-      <span>© 2026 FranchCom · IT- &amp; Security-Lösungen</span>
+      <span>© 2026 Franchcom Ltd &amp; Co KG · IT- &amp; Security-Lösungen</span>
       <span>Persönlich. Sicher. Seit über 20 Jahren.</span>
     </div>
   </div>
@@ -408,6 +372,8 @@
   const t=document.getElementById('toggle'),m=document.getElementById('menu');
   t.addEventListener('click',()=>m.classList.toggle('open'));
   m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>m.classList.remove('open')));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%6,4)*70)+'ms';io.observe(el)});
 </script>
 </body>
 </html>
