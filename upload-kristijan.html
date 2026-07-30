@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GreenMIG · Sicherer Upload — Franchcom Consulting</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#1f6a63" />
+<style>
+  :root {
+    --bg: #f4efe6; --bg-raise: #ece5d7; --ink: #1b2523; --muted: #6c736e;
+    --hair: rgba(27,37,35,0.14); --hair-strong: rgba(27,37,35,0.26);
+    --accent: #1f6a63; --accent-ink: #ffffff; --shadow: rgba(27,37,35,0.10);
+    --c-wa: #4c8a5a; --c-mail: #4f7f9a; --c-amt: #a6864a; --c-doc: #7d7b8b; --c-foto: #ab5548;
+    --serif: 'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;
+    --sans: ui-sans-serif, system-ui, -apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --maxw: 900px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0c100f; --bg-raise:#141a19; --ink:#ece7dd; --muted:#8f9793;
+      --hair:rgba(236,231,221,0.12); --hair-strong:rgba(236,231,221,0.24);
+      --accent:#56a79e; --accent-ink:#06110f; --shadow:rgba(0,0,0,0.45);
+      --c-wa:#6fae7c; --c-mail:#7d9bb0; --c-amt:#c7a96b; --c-doc:#9a98a8; --c-foto:#c17264; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.25rem,5vw,2.5rem); }
+  a { color:inherit; text-decoration:none; }
+
+  header { border-bottom:1px solid var(--hair); background:color-mix(in srgb, var(--bg) 86%, transparent); }
+  .bar { display:flex; align-items:center; justify-content:space-between; height:70px; gap:1rem; }
+  .brand { display:flex; align-items:center; gap:0.6rem; font-family:var(--serif); font-size:1.3rem; }
+  .brand .mark { width:10px; height:10px; transform:rotate(45deg); background:var(--accent); border-radius:1px; }
+  .brand .sub { font-family:var(--sans); font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .bar-right { display:flex; align-items:center; gap:1.1rem; }
+  .lock { font-size:0.75rem; color:var(--muted); display:flex; align-items:center; gap:0.4rem; }
+  @media (max-width:560px){ .lock .lock-txt { display:none; } }
+  .langs { display:flex; gap:0.15rem; align-items:center; }
+  .lang-btn { border:1px solid var(--hair); background:transparent; color:var(--muted);
+    font-size:0.72rem; font-weight:700; letter-spacing:0.05em; padding:0.35rem 0.55rem;
+    border-radius:8px; cursor:pointer; font-family:inherit; line-height:1; transition:color .2s, border-color .2s; }
+  .lang-btn:hover { color:var(--ink); }
+  .lang-btn.active { background:var(--accent); color:var(--accent-ink); border-color:transparent; }
+
+  .hero { padding:clamp(2.5rem,6vw,4rem) 0 clamp(1.5rem,3vw,2rem); }
+  .eyebrow { font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .hero h1 { font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,4.5vw,2.8rem); line-height:1.1; margin:1rem 0 0; }
+  .hero p { max-width:60ch; color:var(--ink); opacity:0.85; margin:1.1rem 0 0; font-size:1.02rem; }
+  .hero .name { color:var(--accent); }
+
+  .cards { display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem; padding:0 0 1.5rem; }
+  @media (max-width:640px){ .cards { grid-template-columns:1fr; } }
+  .card { position:relative; display:flex; flex-direction:column; gap:0.4rem;
+    padding:1.5rem 1.4rem; border-radius:14px; background:var(--bg-raise); border:1px solid var(--hair);
+    transition:transform .2s, border-color .2s, box-shadow .2s; }
+  .card::before { content:""; position:absolute; left:0; top:1rem; bottom:1rem; width:3px; border-radius:3px; background:var(--c); }
+  .card:hover { transform:translateY(-3px); border-color:var(--hair-strong); box-shadow:0 16px 36px var(--shadow); }
+  .card .ico { width:44px; height:44px; border-radius:11px; display:grid; place-items:center;
+    background:color-mix(in srgb, var(--c) 16%, transparent); color:var(--c); margin-bottom:0.4rem; }
+  .card h3 { font-family:var(--serif); font-weight:500; font-size:1.25rem; margin:0; }
+  .card p { margin:0; color:var(--muted); font-size:0.9rem; }
+  .card .go { margin-top:0.7rem; display:inline-flex; align-items:center; gap:0.4rem;
+    align-self:flex-start; font-size:0.9rem; font-weight:600; color:var(--accent-ink);
+    background:var(--accent); padding:0.55rem 1.1rem; border-radius:999px; transition:transform .2s; }
+  .card:hover .go { transform:translateX(2px); }
+
+  .note { border-top:1px solid var(--hair); padding:1.5rem 0; margin-top:0.5rem; color:var(--muted); font-size:0.9rem; }
+  .note b { color:var(--ink); }
+  footer { border-top:1px solid var(--hair); padding:1.5rem 0 2.5rem; color:var(--muted); font-size:0.82rem; }
+  .foot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem; width:100%; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <span class="brand"><span class="mark"></span>Franchcom<span class="sub">Consulting</span></span>
+    <div class="bar-right">
+      <span class="lock">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <span class="lock-txt" data-i18n="secure">Verschlüsselt · vertraulich</span>
+      </span>
+      <div class="langs" role="group" aria-label="Sprache / Nyelv">
+        <button class="lang-btn" data-lang="de" type="button">DE</button>
+        <button class="lang-btn" data-lang="hu" type="button">HU</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="eyebrow">Projekt GreenMIG · Sicherer Upload</span>
+      <h1><span data-i18n="hi">Willkommen,</span> <span class="name">Kristijan Nika</span><span data-i18n="hi_end">.</span></h1>
+      <p data-i18n="intro">
+        Hier lädst du deine Unterlagen sicher hoch — einfach die passende Kategorie wählen und
+        die Dateien reinziehen (PDF, Bilder, Chat-Exporte, alles). Deine Uploads landen direkt
+        und verschlüsselt bei Franchcom Consulting. Niemand außer uns kann sie einsehen, und
+        einmal Hochgeladenes bleibt unverändert erhalten.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cards">
+      <!-- Jede Kachel: href = Nextcloud „Nur-Upload"-Link der jeweiligen Kategorie (siehe LIESMICH) -->
+      <a class="card" style="--c:var(--c-wa)" href="https://portal.franchcom.at/s/4ecXarziCcBxWMS">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.2-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+        <h3 data-i18n="wa_h">WhatsApp-Verläufe</h3>
+        <p data-i18n="wa_p">Chat-Export (Textdatei + Medien). In WhatsApp: Chat → Exportieren.</p>
+        <span class="go" data-i18n="upload">Hochladen →</span>
+      </a>
+
+      <a class="card" style="--c:var(--c-mail)" href="https://portal.franchcom.at/s/CRkZ9SPa7Lwm2zp">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <h3 data-i18n="mail_h">E-Mails</h3>
+        <p data-i18n="mail_p">E-Mails als PDF oder .eml — bitte mit Absender, Empfänger und Datum.</p>
+        <span class="go" data-i18n="upload">Hochladen →</span>
+      </a>
+
+      <a class="card" style="--c:var(--c-amt)" href="https://portal.franchcom.at/s/bias85roDcqwYTo">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></div>
+        <h3 data-i18n="amt_h">Behörden / Ämter</h3>
+        <p data-i18n="amt_p">Bescheide, amtliche Schreiben, Behördenpost.</p>
+        <span class="go" data-i18n="upload">Hochladen →</span>
+      </a>
+
+      <a class="card" style="--c:var(--c-doc)" href="https://portal.franchcom.at/s/p2QpGR2FrTgd2kp">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/></svg></div>
+        <h3 data-i18n="doc_h">Verträge &amp; Dokumente</h3>
+        <p data-i18n="doc_p">Verträge, Rechnungen, Vereinbarungen, sonstige Dokumente.</p>
+        <span class="go" data-i18n="upload">Hochladen →</span>
+      </a>
+
+      <a class="card" style="--c:var(--c-foto)" href="https://portal.franchcom.at/s/rTpCdrm9KFNgrXG">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 17l-5-5-8 7"/></svg></div>
+        <h3 data-i18n="foto_h">Fotos &amp; Sonstiges</h3>
+        <p data-i18n="foto_p">Bilder, Screenshots und alles, was in keine andere Kategorie passt.</p>
+        <span class="go" data-i18n="upload">Hochladen →</span>
+      </a>
+    </div>
+
+    <div class="note">
+      <p><b data-i18n="note_b">Kurz &amp; wichtig:</b> <span data-i18n="note_p">Lieber zu viel als zu wenig hochladen — filtern übernehmen wir. Bitte Originale (nichts abschneiden). Bei Fragen einfach bei uns melden.</span></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Franchcom Consulting · Andreas Pohlodek</span>
+    <span>office@franchcom.at · +43 664 858 7170</span>
+  </div>
+</footer>
+
+<script>
+  const I18N = {
+    hu: {
+      secure: "Titkosított · bizalmas",
+      eyebrow: "GreenMIG projekt · Biztonságos feltöltés",
+      hi: "Üdvözöljük,",
+      hi_end: "!",
+      intro: "Itt biztonságosan feltöltheti a dokumentumait — válassza ki a megfelelő kategóriát, és húzza be a fájlokat (PDF, képek, chat-exportok, bármi). A feltöltések közvetlenül és titkosítva érkeznek a Franchcom Consultinghoz. Rajtunk kívül senki nem láthatja őket, és a feltöltött fájlok változatlanul megmaradnak.",
+      wa_h: "WhatsApp beszélgetések",
+      wa_p: "Chat-export (szövegfájl + média). A WhatsAppban: Beszélgetés → Exportálás.",
+      mail_h: "E-mailek",
+      mail_p: "E-mailek PDF vagy .eml formátumban — kérjük, feladóval, címzettel és dátummal.",
+      amt_h: "Hatóságok / hivatalok",
+      amt_p: "Határozatok, hivatalos levelek, hatósági posta.",
+      doc_h: "Szerződések és dokumentumok",
+      doc_p: "Szerződések, számlák, megállapodások, egyéb dokumentumok.",
+      foto_h: "Fényképek és egyéb",
+      foto_p: "Képek, képernyőképek és minden, ami más kategóriába nem illik.",
+      upload: "Feltöltés →",
+      note_b: "Röviden és fontos:",
+      note_p: "Inkább többet töltsön fel, mint keveset — a szűrést mi végezzük. Kérjük, eredeti fájlokat (semmit ne vágjon le). Kérdés esetén forduljon hozzánk bizalommal."
+    }
+  };
+  const DE = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => { DE[el.getAttribute('data-i18n')] = el.textContent; });
+  I18N.de = DE;
+  function setLang(l) {
+    if (!I18N[l]) l = 'de';
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (I18N[l][k] !== undefined) el.textContent = I18N[l][k];
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+    try { localStorage.setItem('gm_lang', l); } catch (e) {}
+  }
+  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  let start = 'de';
+  try {
+    const s = localStorage.getItem('gm_lang');
+    if (s) start = s;
+    else { const n = (navigator.language || 'de').slice(0, 2); if (n === 'hu') start = 'hu'; }
+  } catch (e) {}
+  setLang(start);
+</script>
+</body>
+</html>
