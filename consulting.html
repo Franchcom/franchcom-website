@@ -235,9 +235,11 @@
       <a href="/gruppe" data-i18n="nav_gruppe">Gruppe</a>
     </nav>
     <div class="bar-right">
-      <div class="langs" role="group" aria-label="Sprache / Мова">
+      <div class="langs" role="group" aria-label="Sprache / Language / Мова / Nyelv">
         <button class="lang-btn" data-lang="de" type="button">DE</button>
+        <button class="lang-btn" data-lang="en" type="button">EN</button>
         <button class="lang-btn" data-lang="uk" type="button">UA</button>
+        <button class="lang-btn" data-lang="hu" type="button">HU</button>
       </div>
       <a class="btn-login" href="/kundenbereich" title="Kundenbereich – Login für bestehende Kunden">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
@@ -443,8 +445,150 @@
     });
   })();
 
-  // --- Sprache DE / UA ---
+  // --- Sprache DE / EN / UA / HU ---
   (function () {
+    var EN = {
+      nav_leistungen: "Services",
+      nav_vorgehen: "Approach",
+      nav_kontakt: "Contact",
+      nav_gruppe: "Group",
+      login: "Client login",
+      hero_eyebrow_a: "Franchcom Group",
+      hero_eyebrow_b: " · Consulting",
+      hero_h1: "Consulting grown from practice.",
+      hero_lead: "Franchcom Consulting supports companies, owners and investors in the decisions that matter — with thorough research, clear assessment and advice grown from years of entrepreneurial experience. No corporate markup, no templates: personal, discreet and close to implementation.",
+      cta_primary: "Request a conversation →",
+      cta_ghost: "View services",
+      s1_h2: "Services",
+      s1_count: "Four fields, one standard",
+      c1_h3: "Research & assessment",
+      c1_p: "We research, structure and assess business matters — turning them into a solid basis for decisions instead of gut feeling.",
+      c1_l1: "Research & preparation of business matters",
+      c1_l2: "Assessment of individual cases & facts",
+      c1_l3: "Opportunity and risk assessment",
+      c1_l4: "Prepared as a clear decision basis",
+      c2_h3: "Digitalisation & IT strategy",
+      c2_p: "Grown from the group's core IT business: we translate technology into strategy — tailored to the company, not to a catalogue.",
+      c2_l1: "Digitalisation & process analysis",
+      c2_l2: "IT strategy & roadmap",
+      c2_l3: "Automation of recurring processes",
+      c2_l4: "IT security & infrastructure consulting",
+      c3_h3: "Business & management consulting",
+      c3_p: "Strategic consulting for organisation, growth and efficiency — pragmatic, implementation-focused and built for long-term impact.",
+      c3_l1: "Strategy & positioning",
+      c3_l2: "Organisation & processes",
+      c3_l3: "Efficiency & operational excellence",
+      c3_l4: "Growth & restructuring",
+      c4_h3: "Founding & succession",
+      c4_p: "Support in decisive phases: building a company as well as handing it over to the next generation or new owners.",
+      c4_l1: "Founding & building",
+      c4_l2: "Succession & handover",
+      c4_l3: "Participation & franchise models",
+      c4_l4: "Support beyond the transition",
+      s2_h2: "Approach",
+      s2_count: "Clear, in three steps",
+      st1_h3: "Understand",
+      st1_p: "We listen and capture the starting point, goals and conditions — with no pre-made answer.",
+      st2_h3: "Research & assessment",
+      st2_p: "We research, examine and assess the matter — objectively, transparently and discreetly.",
+      st3_h3: "Decide & implement",
+      st3_p: "You receive a clear recommendation as a decision basis — on request we support the implementation.",
+      s3_h2: "For whom",
+      w1_k: "SMEs & mid-market",
+      w1_h3: "Owner-led companies",
+      w1_p: "Companies looking for reliable advice as equals — personally supported, without corporate markup and with the same standard Franchcom has lived in IT for over 20 years.",
+      w2_k: "Owners & investors",
+      w2_h3: "Decision-makers who need discretion",
+      w2_p: "Entrepreneurs, owners and investors who need thorough research and solid assessments before decisions — confidential and at the interface with Franchcom Capital.",
+      credo: "Grown, not founded — consulting from practice, not from a template.",
+      k_h2: "Contact",
+      k_who: "Tell us briefly what it's about — we'll get back to you personally and confidentially.",
+      f_name: "Name",
+      f_email: "Email",
+      f_tel: "Phone (optional)",
+      f_msg: "Your request",
+      f_btn: "Send request →",
+      f_err: "An error occurred. Please email office@franchcom.at.",
+      f_done: "Thank you — your request has been received. We'll get back to you personally.",
+      ci_ansprech: "Contact person",
+      ci_email: "Email",
+      ci_tel: "Phone",
+      foot_gruppe: "Group",
+      foot_start: "Home",
+      foot_impressum: "Imprint",
+      foot_datenschutz: "Privacy"
+    };
+    var HU = {
+      nav_leistungen: "Szolgáltatások",
+      nav_vorgehen: "Megközelítés",
+      nav_kontakt: "Kapcsolat",
+      nav_gruppe: "Csoport",
+      login: "Ügyfélbejelentkezés",
+      hero_eyebrow_a: "Franchcom Csoport",
+      hero_eyebrow_b: " · Tanácsadás",
+      hero_h1: "Tanácsadás, amely a gyakorlatból nőtt ki.",
+      hero_lead: "A Franchcom Consulting a vállalatokat, tulajdonosokat és befektetőket támogatja a fontos döntésekben — alapos kutatással, világos értékeléssel és olyan tanácsadással, amely évek vállalkozói tapasztalatából nőtt ki. Nincs vállalati felár, nincsenek sablonok: személyre szabott, diszkrét és a megvalósításhoz közeli.",
+      cta_primary: "Beszélgetés kérése →",
+      cta_ghost: "Szolgáltatások megtekintése",
+      s1_h2: "Szolgáltatások",
+      s1_count: "Négy terület, egy igény",
+      c1_h3: "Kutatás és értékelés",
+      c1_p: "Üzleti ügyeket kutatunk, strukturálunk és értékelünk — és megbízható döntési alapot készítünk belőlük megérzés helyett.",
+      c1_l1: "Üzleti ügyek kutatása és feldolgozása",
+      c1_l2: "Egyes esetek és tényállások értékelése",
+      c1_l3: "Lehetőség- és kockázatértékelés",
+      c1_l4: "Világos döntési alapként feldolgozva",
+      c2_h3: "Digitalizáció és IT-stratégia",
+      c2_p: "A csoport alap IT-üzletágából nőtt ki: a technológiát stratégiává fordítjuk — a vállalathoz illesztve, nem katalógushoz.",
+      c2_l1: "Digitalizációs és folyamatelemzés",
+      c2_l2: "IT-stratégia és ütemterv",
+      c2_l3: "Ismétlődő folyamatok automatizálása",
+      c2_l4: "IT-biztonsági és infrastruktúra-tanácsadás",
+      c3_h3: "Vállalati és menedzsment-tanácsadás",
+      c3_p: "Stratégiai tanácsadás szervezethez, növekedéshez és hatékonysághoz — pragmatikusan, a megvalósításra és a hosszú távú hatásra összpontosítva.",
+      c3_l1: "Stratégia és pozicionálás",
+      c3_l2: "Szervezet és folyamatok",
+      c3_l3: "Hatékonyság és működési kiválóság",
+      c3_l4: "Növekedés és átszervezés",
+      c4_h3: "Alapítás és utódlás",
+      c4_p: "Támogatás a döntő szakaszokban: a vállalat felépítésében éppúgy, mint a következő generációnak vagy új tulajdonosoknak való átadásban.",
+      c4_l1: "Alapítás és felépítés",
+      c4_l2: "Utódlás és átadás",
+      c4_l3: "Részesedési és franchise-modellek",
+      c4_l4: "Támogatás a váltáson túl is",
+      s2_h2: "Megközelítés",
+      s2_count: "Világosan, három lépésben",
+      st1_h3: "Megértés",
+      st1_p: "Meghallgatjuk és rögzítjük a kiindulási helyzetet, a célokat és a feltételeket — előre gyártott válasz nélkül.",
+      st2_h3: "Kutatás és értékelés",
+      st2_p: "Kutatjuk, ellenőrizzük és értékeljük a tényállást — tárgyilagosan, átláthatóan és diszkréten.",
+      st3_h3: "Döntés és megvalósítás",
+      st3_p: "Világos ajánlást kap döntési alapként — kívánságra a megvalósítást is támogatjuk.",
+      s3_h2: "Kinek",
+      w1_k: "KKV-k és középvállalatok",
+      w1_h3: "Tulajdonos által vezetett vállalatok",
+      w1_p: "Vállalatok, amelyek megbízható, partneri szintű tanácsadást keresnek — személyes támogatással, vállalati felár nélkül, ugyanazzal az igényességgel, amelyet a Franchcom több mint 20 éve képvisel az IT-ben.",
+      w2_k: "Tulajdonosok és befektetők",
+      w2_h3: "Diszkréciót igénylő döntéshozók",
+      w2_p: "Vállalkozók, tulajdonosok és befektetők, akiknek a döntések előtt alapos kutatásra és megbízható értékelésekre van szükségük — bizalmasan, a Franchcom Capitallal való kapcsolódási ponton.",
+      credo: "Kinőtt, nem alapított — tanácsadás a gyakorlatból, nem sablonból.",
+      k_h2: "Kapcsolat",
+      k_who: "Mesélje el röviden, miről van szó — személyesen és bizalmasan jelentkezünk.",
+      f_name: "Név",
+      f_email: "E-mail",
+      f_tel: "Telefon (opcionális)",
+      f_msg: "Az Ön kérése",
+      f_btn: "Kérés elküldése →",
+      f_err: "Hiba történt. Kérjük, írjon az office@franchcom.at címre.",
+      f_done: "Köszönjük — kérését megkaptuk. Személyesen jelentkezünk.",
+      ci_ansprech: "Kapcsolattartó",
+      ci_email: "E-mail",
+      ci_tel: "Telefon",
+      foot_gruppe: "Csoport",
+      foot_start: "Főoldal",
+      foot_impressum: "Impresszum",
+      foot_datenschutz: "Adatvédelem"
+    };
     var UK = {
       nav_leistungen: "Послуги",
       nav_vorgehen: "Підхід",
@@ -520,7 +664,7 @@
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       DE[el.getAttribute('data-i18n')] = el.textContent;
     });
-    var DICT = { de: DE, uk: UK };
+    var DICT = { de: DE, en: EN, uk: UK, hu: HU };
     function setLang(l) {
       if (!DICT[l]) l = 'de';
       document.documentElement.lang = l;
@@ -540,7 +684,7 @@
     try {
       var s = localStorage.getItem('fc_consult_lang');
       if (s) start = s;
-      else if ((navigator.language || 'de').slice(0, 2) === 'uk') start = 'uk';
+      else { var n = (navigator.language || 'de').slice(0, 2); if (DICT[n]) start = n; }
     } catch (e) {}
     setLang(start);
   })();
