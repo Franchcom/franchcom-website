@@ -118,6 +118,12 @@
     :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
   }
   @media (max-width: 760px) { nav.links { display: none; } .brand .sub { display: none; } }
+  .langs { display: flex; gap: 0.15rem; }
+  .lang-btn { border: 1px solid var(--hair); background: transparent; color: var(--muted);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.35rem 0.5rem;
+    border-radius: 8px; cursor: pointer; font-family: inherit; line-height: 1; transition: color .2s, border-color .2s; }
+  .lang-btn:hover { color: var(--ink); }
+  .lang-btn.active { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
 
   /* ---------- buttons ---------- */
   .btn {
@@ -223,15 +229,19 @@
   <div class="wrap bar">
     <a class="brand" href="/" aria-label="Franchcom – Zur Startseite"><span class="mark" aria-hidden="true"></span>Franchcom<span class="sub">Consulting</span></a>
     <nav class="links">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#vorgehen">Vorgehen</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="/gruppe">Gruppe</a>
+      <a href="#leistungen" data-i18n="nav_leistungen">Leistungen</a>
+      <a href="#vorgehen" data-i18n="nav_vorgehen">Vorgehen</a>
+      <a href="#kontakt" data-i18n="nav_kontakt">Kontakt</a>
+      <a href="/gruppe" data-i18n="nav_gruppe">Gruppe</a>
     </nav>
     <div class="bar-right">
+      <div class="langs" role="group" aria-label="Sprache / Мова">
+        <button class="lang-btn" data-lang="de" type="button">DE</button>
+        <button class="lang-btn" data-lang="uk" type="button">UA</button>
+      </div>
       <a class="btn-login" href="/kundenbereich" title="Kundenbereich – Login für bestehende Kunden">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-        Kundenlogin
+        <span data-i18n="login">Kundenlogin</span>
       </a>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Farbschema wechseln" title="Hell / Dunkel">
         <svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
@@ -244,17 +254,17 @@
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow rise"><a href="/gruppe">Franchcom Gruppe</a> · Consulting</span>
-      <h1 class="rise d1">Beratung, die aus der Praxis kommt.</h1>
-      <p class="lead rise d2">
+      <span class="eyebrow rise"><a href="/gruppe" data-i18n="hero_eyebrow_a">Franchcom Gruppe</a><span data-i18n="hero_eyebrow_b"> · Consulting</span></span>
+      <h1 class="rise d1" data-i18n="hero_h1">Beratung, die aus der Praxis kommt.</h1>
+      <p class="lead rise d2" data-i18n="hero_lead">
         Franchcom Consulting unterstützt Unternehmen, Eigentümer und Investoren bei den
         Entscheidungen, die zählen — mit gründlicher Recherche, klarer Bewertung und Beratung,
         die aus jahrelanger unternehmerischer Erfahrung gewachsen ist. Kein Konzern‑Aufschlag,
         keine Vorlagen: persönlich, diskret und umsetzungsnah.
       </p>
       <div class="cta rise d3">
-        <a href="#kontakt" class="btn btn-primary">Gespräch anfragen →</a>
-        <a href="#leistungen" class="btn btn-ghost">Leistungen ansehen</a>
+        <a href="#kontakt" class="btn btn-primary" data-i18n="cta_primary">Gespräch anfragen →</a>
+        <a href="#leistungen" class="btn btn-ghost" data-i18n="cta_ghost">Leistungen ansehen</a>
       </div>
     </div>
   </section>
@@ -263,52 +273,52 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">— 01</span>
-        <h2>Leistungen</h2>
-        <span class="count">Vier Felder, ein Anspruch</span>
+        <h2 data-i18n="s1_h2">Leistungen</h2>
+        <span class="count" data-i18n="s1_count">Vier Felder, ein Anspruch</span>
       </div>
       <div class="cards">
         <div class="card" style="--c: var(--c-con)">
           <span class="num">01</span>
-          <h3>Recherche &amp; Bewertung</h3>
-          <p>Wir recherchieren, strukturieren und bewerten Geschäftsvorfälle — und machen daraus belastbare Entscheidungsgrundlagen statt Bauchgefühl.</p>
+          <h3 data-i18n="c1_h3">Recherche &amp; Bewertung</h3>
+          <p data-i18n="c1_p">Wir recherchieren, strukturieren und bewerten Geschäftsvorfälle — und machen daraus belastbare Entscheidungsgrundlagen statt Bauchgefühl.</p>
           <ul>
-            <li>Recherche &amp; Aufbereitung von Geschäftsvorfällen</li>
-            <li>Bewertung einzelner Fälle &amp; Sachverhalte</li>
-            <li>Chancen‑ und Risikoeinschätzung</li>
-            <li>Aufbereitung als klare Entscheidungsvorlage</li>
+            <li data-i18n="c1_l1">Recherche &amp; Aufbereitung von Geschäftsvorfällen</li>
+            <li data-i18n="c1_l2">Bewertung einzelner Fälle &amp; Sachverhalte</li>
+            <li data-i18n="c1_l3">Chancen‑ und Risikoeinschätzung</li>
+            <li data-i18n="c1_l4">Aufbereitung als klare Entscheidungsvorlage</li>
           </ul>
         </div>
         <div class="card" style="--c: var(--c-it)">
           <span class="num">02</span>
-          <h3>Digitalisierung &amp; IT‑Strategie</h3>
-          <p>Aus dem IT‑Kerngeschäft der Gruppe gewachsen: Wir übersetzen Technologie in Strategie — passend zum Unternehmen, nicht zum Katalog.</p>
+          <h3 data-i18n="c2_h3">Digitalisierung &amp; IT‑Strategie</h3>
+          <p data-i18n="c2_p">Aus dem IT‑Kerngeschäft der Gruppe gewachsen: Wir übersetzen Technologie in Strategie — passend zum Unternehmen, nicht zum Katalog.</p>
           <ul>
-            <li>Digitalisierungs‑ &amp; Prozessanalyse</li>
-            <li>IT‑Strategie &amp; Roadmap</li>
-            <li>Automatisierung wiederkehrender Abläufe</li>
-            <li>IT‑Security‑ &amp; Infrastrukturberatung</li>
+            <li data-i18n="c2_l1">Digitalisierungs‑ &amp; Prozessanalyse</li>
+            <li data-i18n="c2_l2">IT‑Strategie &amp; Roadmap</li>
+            <li data-i18n="c2_l3">Automatisierung wiederkehrender Abläufe</li>
+            <li data-i18n="c2_l4">IT‑Security‑ &amp; Infrastrukturberatung</li>
           </ul>
         </div>
         <div class="card" style="--c: var(--c-cap)">
           <span class="num">03</span>
-          <h3>Unternehmens‑ &amp; Management‑Beratung</h3>
-          <p>Strategische Beratung für Organisation, Wachstum und Effizienz — pragmatisch, umsetzungsnah und auf langfristige Wirkung ausgelegt.</p>
+          <h3 data-i18n="c3_h3">Unternehmens‑ &amp; Management‑Beratung</h3>
+          <p data-i18n="c3_p">Strategische Beratung für Organisation, Wachstum und Effizienz — pragmatisch, umsetzungsnah und auf langfristige Wirkung ausgelegt.</p>
           <ul>
-            <li>Strategie &amp; Positionierung</li>
-            <li>Organisation &amp; Prozesse</li>
-            <li>Effizienz &amp; operative Exzellenz</li>
-            <li>Wachstum &amp; Restrukturierung</li>
+            <li data-i18n="c3_l1">Strategie &amp; Positionierung</li>
+            <li data-i18n="c3_l2">Organisation &amp; Prozesse</li>
+            <li data-i18n="c3_l3">Effizienz &amp; operative Exzellenz</li>
+            <li data-i18n="c3_l4">Wachstum &amp; Restrukturierung</li>
           </ul>
         </div>
         <div class="card" style="--c: var(--c-agro)">
           <span class="num">04</span>
-          <h3>Gründung &amp; Nachfolge</h3>
-          <p>Begleitung in entscheidenden Phasen: beim Aufbau eines Unternehmens ebenso wie bei der Übergabe an die nächste Generation oder neue Eigentümer.</p>
+          <h3 data-i18n="c4_h3">Gründung &amp; Nachfolge</h3>
+          <p data-i18n="c4_p">Begleitung in entscheidenden Phasen: beim Aufbau eines Unternehmens ebenso wie bei der Übergabe an die nächste Generation oder neue Eigentümer.</p>
           <ul>
-            <li>Gründung &amp; Aufbau</li>
-            <li>Nachfolge &amp; Übergabe</li>
-            <li>Beteiligungs‑ &amp; Franchisemodelle</li>
-            <li>Begleitung über den Wechsel hinaus</li>
+            <li data-i18n="c4_l1">Gründung &amp; Aufbau</li>
+            <li data-i18n="c4_l2">Nachfolge &amp; Übergabe</li>
+            <li data-i18n="c4_l3">Beteiligungs‑ &amp; Franchisemodelle</li>
+            <li data-i18n="c4_l4">Begleitung über den Wechsel hinaus</li>
           </ul>
         </div>
       </div>
@@ -319,24 +329,24 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">— 02</span>
-        <h2>Vorgehen</h2>
-        <span class="count">Klar, in drei Schritten</span>
+        <h2 data-i18n="s2_h2">Vorgehen</h2>
+        <span class="count" data-i18n="s2_count">Klar, in drei Schritten</span>
       </div>
       <div class="steps">
         <div class="step">
           <div class="sn">01</div>
-          <h3>Verstehen</h3>
-          <p>Wir hören zu und erfassen Ausgangslage, Ziele und Rahmenbedingungen — ohne vorgefertigte Antwort.</p>
+          <h3 data-i18n="st1_h3">Verstehen</h3>
+          <p data-i18n="st1_p">Wir hören zu und erfassen Ausgangslage, Ziele und Rahmenbedingungen — ohne vorgefertigte Antwort.</p>
         </div>
         <div class="step">
           <div class="sn">02</div>
-          <h3>Recherche &amp; Bewertung</h3>
-          <p>Wir recherchieren, prüfen und bewerten den Sachverhalt — sachlich, nachvollziehbar und diskret.</p>
+          <h3 data-i18n="st2_h3">Recherche &amp; Bewertung</h3>
+          <p data-i18n="st2_p">Wir recherchieren, prüfen und bewerten den Sachverhalt — sachlich, nachvollziehbar und diskret.</p>
         </div>
         <div class="step">
           <div class="sn">03</div>
-          <h3>Entscheiden &amp; Umsetzen</h3>
-          <p>Sie erhalten eine klare Empfehlung als Entscheidungsgrundlage — auf Wunsch begleiten wir die Umsetzung.</p>
+          <h3 data-i18n="st3_h3">Entscheiden &amp; Umsetzen</h3>
+          <p data-i18n="st3_p">Sie erhalten eine klare Empfehlung als Entscheidungsgrundlage — auf Wunsch begleiten wir die Umsetzung.</p>
         </div>
       </div>
     </div>
@@ -346,18 +356,18 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">— 03</span>
-        <h2>Für wen</h2>
+        <h2 data-i18n="s3_h2">Für wen</h2>
       </div>
       <div class="who-grid">
         <div class="who-card">
-          <div class="k">KMU &amp; Mittelstand</div>
-          <h3>Inhabergeführte Unternehmen</h3>
-          <p>Unternehmen, die eine verlässliche Beratung auf Augenhöhe suchen — persönlich betreut, ohne Konzern‑Aufschlag und mit dem gleichen Anspruch, den Franchcom seit über 20 Jahren in der IT lebt.</p>
+          <div class="k" data-i18n="w1_k">KMU &amp; Mittelstand</div>
+          <h3 data-i18n="w1_h3">Inhabergeführte Unternehmen</h3>
+          <p data-i18n="w1_p">Unternehmen, die eine verlässliche Beratung auf Augenhöhe suchen — persönlich betreut, ohne Konzern‑Aufschlag und mit dem gleichen Anspruch, den Franchcom seit über 20 Jahren in der IT lebt.</p>
         </div>
         <div class="who-card">
-          <div class="k">Eigentümer &amp; Investoren</div>
-          <h3>Entscheider mit Diskretionsbedarf</h3>
-          <p>Unternehmer, Eigentümer und Investoren, die vor Entscheidungen gründliche Recherche und belastbare Bewertungen brauchen — vertraulich und an der Schnittstelle zu Franchcom Capital.</p>
+          <div class="k" data-i18n="w2_k">Eigentümer &amp; Investoren</div>
+          <h3 data-i18n="w2_h3">Entscheider mit Diskretionsbedarf</h3>
+          <p data-i18n="w2_p">Unternehmer, Eigentümer und Investoren, die vor Entscheidungen gründliche Recherche und belastbare Bewertungen brauchen — vertraulich und an der Schnittstelle zu Franchcom Capital.</p>
         </div>
       </div>
     </div>
@@ -365,36 +375,36 @@
 
   <section class="block" id="haltung">
     <div class="wrap">
-      <p class="credo">Gewachsen statt gegründet — Beratung aus der Praxis, nicht aus der Vorlage.</p>
+      <p class="credo" data-i18n="credo">Gewachsen statt gegründet — Beratung aus der Praxis, nicht aus der Vorlage.</p>
     </div>
   </section>
 
   <section class="block" id="kontakt">
     <div class="wrap contact">
       <div>
-        <h2>Kontakt</h2>
-        <p class="who">Erzählen Sie uns kurz, worum es geht — wir melden uns persönlich und vertraulich zurück.</p>
+        <h2 data-i18n="k_h2">Kontakt</h2>
+        <p class="who" data-i18n="k_who">Erzählen Sie uns kurz, worum es geht — wir melden uns persönlich und vertraulich zurück.</p>
         <form id="anfrageForm" class="kform">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-          <label for="af-name">Name</label>
+          <label for="af-name" data-i18n="f_name">Name</label>
           <input type="text" id="af-name" name="name" required autocomplete="name" />
-          <label for="af-email">E‑Mail</label>
+          <label for="af-email" data-i18n="f_email">E‑Mail</label>
           <input type="email" id="af-email" name="email" required autocomplete="email" />
-          <label for="af-tel">Telefon (optional)</label>
+          <label for="af-tel" data-i18n="f_tel">Telefon (optional)</label>
           <input type="text" id="af-tel" name="telefon" autocomplete="tel" />
-          <label for="af-msg">Ihr Anliegen</label>
+          <label for="af-msg" data-i18n="f_msg">Ihr Anliegen</label>
           <textarea id="af-msg" name="nachricht" rows="4" required></textarea>
-          <button type="submit" id="anfrageBtn">Anfrage senden →</button>
-          <p class="kform-err" id="anfrageErr">Es ist ein Fehler aufgetreten. Bitte per E‑Mail an office@franchcom.at.</p>
+          <button type="submit" id="anfrageBtn" data-i18n="f_btn">Anfrage senden →</button>
+          <p class="kform-err" id="anfrageErr" data-i18n="f_err">Es ist ein Fehler aufgetreten. Bitte per E‑Mail an office@franchcom.at.</p>
         </form>
-        <div class="kform-done" id="anfrageDone" style="display:none">
+        <div class="kform-done" id="anfrageDone" style="display:none" data-i18n="f_done">
           Vielen Dank — Ihre Anfrage ist eingegangen. Wir melden uns persönlich zurück.
         </div>
       </div>
       <div class="cinfo">
-        <div><span class="cl">Ansprechpartner</span><span class="cv">Andreas Pohlodek</span></div>
-        <a href="mailto:office@franchcom.at"><span class="cl">E‑Mail</span><span class="cv">office@franchcom.at</span></a>
-        <a href="tel:+436648587170"><span class="cl">Telefon</span><span class="cv">+43 664 858 7170</span></a>
+        <div><span class="cl" data-i18n="ci_ansprech">Ansprechpartner</span><span class="cv">Andreas Pohlodek</span></div>
+        <a href="mailto:office@franchcom.at"><span class="cl" data-i18n="ci_email">E‑Mail</span><span class="cv">office@franchcom.at</span></a>
+        <a href="tel:+436648587170"><span class="cl" data-i18n="ci_tel">Telefon</span><span class="cv">+43 664 858 7170</span></a>
       </div>
     </div>
   </section>
@@ -405,10 +415,10 @@
     <span>© 2026 Franchcom Ltd &amp; Co KG</span>
     <span class="roster">Franchcom IT · BlackBoxer · Franchcom Capital · Consulting · Agro</span>
     <nav class="foot-links" aria-label="Rechtliches">
-      <a href="/gruppe">Gruppe</a>
-      <a href="/">Startseite</a>
-      <a href="/impressum">Impressum</a>
-      <a href="/datenschutz">Datenschutz</a>
+      <a href="/gruppe" data-i18n="foot_gruppe">Gruppe</a>
+      <a href="/" data-i18n="foot_start">Startseite</a>
+      <a href="/impressum" data-i18n="foot_impressum">Impressum</a>
+      <a href="/datenschutz" data-i18n="foot_datenschutz">Datenschutz</a>
     </nav>
   </div>
 </footer>
@@ -431,6 +441,108 @@
       apply(next);
       try { localStorage.setItem(KEY, next); } catch (e) {}
     });
+  })();
+
+  // --- Sprache DE / UA ---
+  (function () {
+    var UK = {
+      nav_leistungen: "Послуги",
+      nav_vorgehen: "Підхід",
+      nav_kontakt: "Контакт",
+      nav_gruppe: "Група",
+      login: "Вхід для клієнтів",
+      hero_eyebrow_a: "Група Franchcom",
+      hero_eyebrow_b: " · Консалтинг",
+      hero_h1: "Консалтинг, що виріс із практики.",
+      hero_lead: "Franchcom Consulting підтримує компанії, власників та інвесторів у рішеннях, які мають значення — завдяки ґрунтовному дослідженню, чіткій оцінці та консультуванню, що виросло з багаторічного підприємницького досвіду. Без корпоративних націнок і шаблонів: персонально, конфіденційно та орієнтовано на впровадження.",
+      cta_primary: "Запросити розмову →",
+      cta_ghost: "Переглянути послуги",
+      s1_h2: "Послуги",
+      s1_count: "Чотири напрями, один стандарт",
+      c1_h3: "Дослідження та оцінка",
+      c1_p: "Ми досліджуємо, структуруємо та оцінюємо ділові обставини — і робимо з них надійну основу для рішень замість інтуїції.",
+      c1_l1: "Дослідження та підготовка ділових обставин",
+      c1_l2: "Оцінка окремих випадків і обставин",
+      c1_l3: "Оцінка можливостей і ризиків",
+      c1_l4: "Підготовка у вигляді чіткої основи для рішення",
+      c2_h3: "Цифровізація та ІТ-стратегія",
+      c2_p: "Виросло з основного ІТ-бізнесу групи: ми перетворюємо технології на стратегію — під компанію, а не під каталог.",
+      c2_l1: "Аналіз цифровізації та процесів",
+      c2_l2: "ІТ-стратегія та дорожня карта",
+      c2_l3: "Автоматизація повторюваних процесів",
+      c2_l4: "Консультування з ІТ-безпеки та інфраструктури",
+      c3_h3: "Бізнес- та управлінський консалтинг",
+      c3_p: "Стратегічне консультування щодо організації, зростання та ефективності — прагматично, орієнтовано на впровадження та довгостроковий ефект.",
+      c3_l1: "Стратегія та позиціонування",
+      c3_l2: "Організація та процеси",
+      c3_l3: "Ефективність та операційна досконалість",
+      c3_l4: "Зростання та реструктуризація",
+      c4_h3: "Заснування та наступництво",
+      c4_p: "Супровід у вирішальні періоди: як при створенні компанії, так і при передачі наступному поколінню чи новим власникам.",
+      c4_l1: "Заснування та розбудова",
+      c4_l2: "Наступництво та передача",
+      c4_l3: "Моделі участі та франчайзингу",
+      c4_l4: "Супровід і після зміни",
+      s2_h2: "Підхід",
+      s2_count: "Чітко, у три кроки",
+      st1_h3: "Зрозуміти",
+      st1_p: "Ми слухаємо й фіксуємо вихідну ситуацію, цілі та умови — без готової відповіді наперед.",
+      st2_h3: "Дослідження та оцінка",
+      st2_p: "Ми досліджуємо, перевіряємо та оцінюємо обставини — об'єктивно, прозоро й конфіденційно.",
+      st3_h3: "Рішення та впровадження",
+      st3_p: "Ви отримуєте чітку рекомендацію як основу для рішення — за бажанням ми супроводжуємо впровадження.",
+      s3_h2: "Для кого",
+      w1_k: "Малий і середній бізнес",
+      w1_h3: "Компанії під керівництвом власників",
+      w1_p: "Компанії, які шукають надійне консультування на рівних — з персональним супроводом, без корпоративних націнок і з тим самим стандартом, який Franchcom утілює в ІТ понад 20 років.",
+      w2_k: "Власники та інвестори",
+      w2_h3: "Особи, що приймають рішення й потребують конфіденційності",
+      w2_p: "Підприємці, власники та інвестори, яким перед рішеннями потрібні ґрунтовне дослідження та надійні оцінки — конфіденційно та на стику з Franchcom Capital.",
+      credo: "Виросло, а не засновано — консалтинг із практики, а не з шаблону.",
+      k_h2: "Контакт",
+      k_who: "Коротко розкажіть, про що йдеться — ми зв'яжемося з вами особисто та конфіденційно.",
+      f_name: "Ім'я",
+      f_email: "Електронна пошта",
+      f_tel: "Телефон (за бажанням)",
+      f_msg: "Ваш запит",
+      f_btn: "Надіслати запит →",
+      f_err: "Сталася помилка. Будь ласка, напишіть на office@franchcom.at.",
+      f_done: "Дякуємо — ваш запит отримано. Ми зв'яжемося з вами особисто.",
+      ci_ansprech: "Контактна особа",
+      ci_email: "Ел. пошта",
+      ci_tel: "Телефон",
+      foot_gruppe: "Група",
+      foot_start: "Головна",
+      foot_impressum: "Вихідні дані",
+      foot_datenschutz: "Конфіденційність"
+    };
+    var DE = {};
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      DE[el.getAttribute('data-i18n')] = el.textContent;
+    });
+    var DICT = { de: DE, uk: UK };
+    function setLang(l) {
+      if (!DICT[l]) l = 'de';
+      document.documentElement.lang = l;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var k = el.getAttribute('data-i18n');
+        if (DICT[l][k] !== undefined) el.textContent = DICT[l][k];
+      });
+      document.querySelectorAll('.lang-btn').forEach(function (b) {
+        b.classList.toggle('active', b.dataset.lang === l);
+      });
+      try { localStorage.setItem('fc_consult_lang', l); } catch (e) {}
+    }
+    document.querySelectorAll('.lang-btn').forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.dataset.lang); });
+    });
+    var start = 'de';
+    try {
+      var s = localStorage.getItem('fc_consult_lang');
+      if (s) start = s;
+      else if ((navigator.language || 'de').slice(0, 2) === 'uk') start = 'uk';
+    } catch (e) {}
+    setLang(start);
   })();
 
   // --- Kontaktanfrage -> Supabase (Tabelle: anfragen) ---
