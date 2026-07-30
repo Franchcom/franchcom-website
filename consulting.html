@@ -191,6 +191,15 @@
   .cinfo a, .cinfo div { display: flex; justify-content: space-between; gap: 1.5rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--hair); font-size: 0.98rem; }
   .cinfo .cl { color: var(--muted); font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .cinfo a:hover .cv { color: var(--accent); }
+  .kform { margin-top: 1.6rem; display: flex; flex-direction: column; }
+  .kform label { font-size: 0.76rem; letter-spacing: 0.04em; color: var(--muted); font-weight: 600; margin: 0.8rem 0 0.3rem; }
+  .kform input, .kform textarea { width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--hair-strong); border-radius: 10px; background: var(--bg); color: var(--ink); font-family: inherit; font-size: 0.95rem; }
+  .kform textarea { resize: vertical; }
+  .kform button { margin-top: 1.2rem; align-self: flex-start; border: none; font-size: 0.92rem; font-weight: 600; color: var(--accent-ink); background: var(--accent); padding: 0.75rem 1.7rem; border-radius: 999px; cursor: pointer; transition: transform .2s; }
+  .kform button:hover { transform: translateY(-2px); }
+  .kform button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .kform-done { margin-top: 1.4rem; padding: 1rem 1.2rem; border: 1px solid var(--accent); border-radius: 10px; background: color-mix(in srgb, var(--accent) 12%, transparent); font-size: 0.95rem; }
+  .kform-err { color: #b5695c; font-size: 0.88rem; margin-top: 0.6rem; display: none; }
 
   /* ---------- footer ---------- */
   footer { border-top: 1px solid var(--hair); padding: 2.5rem 0 3.5rem; }
@@ -365,6 +374,22 @@
       <div>
         <h2>Kontakt</h2>
         <p class="who">Erzählen Sie uns kurz, worum es geht — wir melden uns persönlich und vertraulich zurück.</p>
+        <form id="anfrageForm" class="kform">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+          <label for="af-name">Name</label>
+          <input type="text" id="af-name" name="name" required autocomplete="name" />
+          <label for="af-email">E‑Mail</label>
+          <input type="email" id="af-email" name="email" required autocomplete="email" />
+          <label for="af-tel">Telefon (optional)</label>
+          <input type="text" id="af-tel" name="telefon" autocomplete="tel" />
+          <label for="af-msg">Ihr Anliegen</label>
+          <textarea id="af-msg" name="nachricht" rows="4" required></textarea>
+          <button type="submit" id="anfrageBtn">Anfrage senden →</button>
+          <p class="kform-err" id="anfrageErr">Es ist ein Fehler aufgetreten. Bitte per E‑Mail an office@franchcom.at.</p>
+        </form>
+        <div class="kform-done" id="anfrageDone" style="display:none">
+          Vielen Dank — Ihre Anfrage ist eingegangen. Wir melden uns persönlich zurück.
+        </div>
       </div>
       <div class="cinfo">
         <div><span class="cl">Ansprechpartner</span><span class="cv">Andreas Pohlodek</span></div>
@@ -405,6 +430,45 @@
       var next = current() === 'dark' ? 'light' : 'dark';
       apply(next);
       try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+  })();
+
+  // --- Kontaktanfrage -> Supabase (Tabelle: anfragen) ---
+  (function () {
+    var SUPABASE_URL = 'https://wnrcsosmphcvrxseothv.supabase.co';
+    var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InducmNzb3NtcGhjdnJ4c2VvdGh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0OTE3ODcsImV4cCI6MjEwMDA2Nzc4N30.U5XA56YZM6FcxJ49XS39WcKo_zkv_ByGmt7uDu7bKDY';
+    var form = document.getElementById('anfrageForm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.botcheck.checked) return;
+      document.getElementById('anfrageErr').style.display = 'none';
+      var b = document.getElementById('anfrageBtn'); b.disabled = true;
+      var body = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        telefon: form.telefon.value.trim() || null,
+        nachricht: form.nachricht.value.trim(),
+        quelle: 'consulting'
+      };
+      fetch(SUPABASE_URL + '/rest/v1/anfragen', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(body)
+      }).then(function (res) {
+        if (res.ok) {
+          form.style.display = 'none';
+          document.getElementById('anfrageDone').style.display = 'block';
+        } else { throw new Error('fail'); }
+      }).catch(function () {
+        document.getElementById('anfrageErr').style.display = 'block';
+        b.disabled = false;
+      });
     });
   })();
 </script>
