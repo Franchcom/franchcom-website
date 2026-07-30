@@ -52,6 +52,10 @@
     padding:0.95rem 2.2rem; border-radius:999px; box-shadow:0 12px 28px color-mix(in srgb, var(--accent) 32%, transparent);
     transition:transform .2s, box-shadow .2s; }
   .btn-login:hover { transform:translateY(-2px); box-shadow:0 18px 36px color-mix(in srgb, var(--accent) 42%, transparent); }
+  .agreement { margin:1.8rem auto 0; max-width:46ch; padding:1.1rem 1.2rem; border:1px dashed var(--hair-strong); border-radius:12px; text-align:center; }
+  .agreement p { margin:0 0 0.7rem; font-size:0.9rem; color:var(--muted); }
+  .btn-secondary { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.9rem; font-weight:600; color:var(--accent); border:1px solid var(--accent); padding:0.55rem 1.1rem; border-radius:999px; }
+  .btn-secondary:hover { background:var(--accent); color:var(--accent-ink); }
   .hint { margin-top:1.6rem; font-size:0.85rem; color:var(--muted); }
   .hint a { color:var(--accent); }
 
@@ -83,6 +87,10 @@
       In Ihrem persönlichen Bereich laden Sie Unterlagen hoch und finden die Berichte, die wir mit
       Ihnen teilen — verschlüsselt und vertraulich.
     </p>
+    <div class="agreement">
+      <p data-i18n="agree_note">Beim ersten Mal: Bitte zuerst die Vereinbarung &amp; den Datenschutz (AVV) ansehen und online bestätigen.</p>
+      <a class="btn-secondary" href="/vereinbarung"><span data-i18n="agree_btn">Vereinbarung ansehen &amp; bestätigen</span> →</a>
+    </div>
     <a class="btn-login" href="https://portal.franchcom.at">
       <span data-i18n="login">Anmelden</span> →
     </a>
@@ -105,6 +113,8 @@
       h1: "Üdvözöljük a védett ügyfélterületen.",
       lead: "Jelentkezzen be a Franchcom Consultingtól kapott hozzáférési adatokkal. Személyes területén dokumentumokat tölthet fel, és megtalálja a jelentéseket, amelyeket megosztunk Önnel — titkosítva és bizalmasan.",
       login: "Bejelentkezés",
+      agree_note: "Első alkalommal: kérjük, először tekintse meg és online erősítse meg a megállapodást és az adatvédelmet (AVV).",
+      agree_btn: "Megállapodás megtekintése és megerősítése",
       hint: "A hozzáférési adatokat személyesen a Franchcomtól kapja. Kérdése van?"
     }
   };

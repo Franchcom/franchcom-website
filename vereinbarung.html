@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vereinbarung & Datenschutz — Franchcom Consulting</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#1f6a63" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<style>
+  :root {
+    --bg:#f4efe6; --bg-raise:#ece5d7; --ink:#1b2523; --muted:#6c736e;
+    --hair:rgba(27,37,35,0.14); --hair-strong:rgba(27,37,35,0.26);
+    --accent:#1f6a63; --accent-ink:#fff; --shadow:rgba(27,37,35,0.10);
+    --serif:'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0c100f;--bg-raise:#141a19;--ink:#ece7dd;--muted:#8f9793;
+      --hair:rgba(236,231,221,0.12);--hair-strong:rgba(236,231,221,0.24);
+      --accent:#56a79e;--accent-ink:#06110f;--shadow:rgba(0,0,0,0.45);}
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2rem);}
+  a{color:var(--accent);}
+  header{border-bottom:1px solid var(--hair);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);}
+  .bar{max-width:760px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2rem);display:flex;align-items:center;justify-content:space-between;height:66px;gap:1rem;}
+  .brand{display:flex;align-items:center;gap:0.6rem;font-family:var(--serif);font-size:1.2rem;}
+  .brand .mark{width:10px;height:10px;transform:rotate(45deg);background:var(--accent);border-radius:1px;}
+  .brand .sub{font-family:var(--sans);font-size:0.64rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .langs{display:flex;gap:0.15rem;}
+  .lang-btn{border:1px solid var(--hair);background:transparent;color:var(--muted);font-size:0.72rem;font-weight:700;padding:0.35rem 0.55rem;border-radius:8px;cursor:pointer;font-family:inherit;line-height:1;}
+  .lang-btn.active{background:var(--accent);color:var(--accent-ink);border-color:transparent;}
+  main{padding:clamp(2rem,5vw,3.5rem) 0 4rem;}
+  .eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,4.5vw,2.5rem);margin:0.6rem 0 0;}
+  .lead{color:var(--ink);opacity:0.85;margin:1rem 0 0;}
+  section.doc{margin-top:2.5rem;border-top:1px solid var(--hair);padding-top:1.8rem;}
+  h2{font-family:var(--serif);font-weight:500;font-size:1.4rem;margin:0 0 0.4rem;}
+  h3{font-size:1rem;margin:1.2rem 0 0.3rem;}
+  p,li{font-size:0.97rem;}
+  .box{background:var(--bg-raise);border:1px solid var(--hair);border-radius:12px;padding:1.3rem 1.4rem;margin-top:1rem;}
+  .avv-scroll{max-height:340px;overflow-y:auto;border:1px solid var(--hair);border-radius:12px;padding:1.2rem 1.4rem;background:var(--bg-raise);font-size:0.9rem;}
+  .avv-scroll h3{margin-top:1rem;}
+  .note{font-size:0.85rem;color:var(--muted);}
+  /* form */
+  form{margin-top:1.4rem;background:var(--bg-raise);border:1px solid var(--hair);border-radius:14px;padding:1.6rem 1.5rem;}
+  label{display:block;font-size:0.85rem;font-weight:600;margin:0.9rem 0 0.35rem;}
+  input[type=text],input[type=email]{width:100%;padding:0.7rem 0.9rem;border:1px solid var(--hair-strong);border-radius:10px;background:var(--bg);color:var(--ink);font-family:inherit;font-size:0.97rem;}
+  .check{display:flex;gap:0.6rem;align-items:flex-start;margin-top:1.1rem;font-size:0.92rem;}
+  .check input{margin-top:0.25rem;width:18px;height:18px;flex:none;}
+  .btn{margin-top:1.3rem;width:100%;border:none;font-size:1rem;font-weight:600;color:var(--accent-ink);background:var(--accent);padding:0.9rem 1.5rem;border-radius:999px;cursor:pointer;transition:transform .2s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+  #done{display:none;margin-top:1.4rem;background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid var(--accent);border-radius:12px;padding:1.2rem 1.4rem;color:var(--ink);}
+  #err{display:none;margin-top:1rem;color:#b5695c;font-size:0.9rem;}
+  footer{border-top:1px solid var(--hair);padding:1.3rem 0;color:var(--muted);font-size:0.8rem;text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/kundenbereich" style="text-decoration:none;color:inherit;"><span class="mark"></span>Franchcom<span class="sub">Consulting</span></a>
+    <div class="langs" role="group" aria-label="Sprache / Nyelv">
+      <button class="lang-btn" data-lang="de" type="button">DE</button>
+      <button class="lang-btn" data-lang="hu" type="button">HU</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="eyebrow">Franchcom Consulting · Projekt GreenMIG</span>
+    <h1 data-i18n="h1">Vereinbarung & Datenschutz</h1>
+    <p class="lead" data-i18n="lead">Bitte lesen Sie das Angebot und die Datenschutzvereinbarung (AVV) und bestätigen Sie beides unten. Erst danach starten wir mit der kostenlosen Erst-Sichtung.</p>
+
+    <!-- ANGEBOT -->
+    <section class="doc">
+      <h2 data-i18n="ang_h">1 · Angebot — Kostenlose Erst-Sichtung & Aufbereitung</h2>
+      <div class="box">
+        <h3 data-i18n="ang_s1h">Schritt 1 — Kostenlose Erst-Sichtung</h3>
+        <p data-i18n="ang_s1p">Franchcom Consulting sichtet die von Ihnen bereitgestellten Unterlagen (Dokumente, E-Mails, WhatsApp, Behördenkorrespondenz) sowie das persönliche Gespräch, um Umfang und Aufwand einzuschätzen. Diese Erst-Sichtung ist für Sie kostenlos und unverbindlich.</p>
+        <h3 data-i18n="ang_s2h">Schritt 2 — Angebot für die Aufbereitung</h3>
+        <p data-i18n="ang_s2p">Auf Basis der Sichtung erhalten Sie ein konkretes Angebot für die weitere Aufbereitung: eine neutrale, zusammenhängende Zusammenfassung des Sachverhalts (Chronologie, Standpunkte, Streitpunkte), eine Einschätzung der Ausgangslage sowie die Herausarbeitung offener Punkte — als Entscheidungsgrundlage zur weiteren Bearbeitung durch einen Rechtsanwalt (insbesondere im Hinblick auf mögliche Ansprüche gegenüber Dr. Dietz). Kosten entstehen erst nach Ihrer Annahme dieses Angebots.</p>
+        <h3 data-i18n="ang_clh">Klarstellung</h3>
+        <p data-i18n="ang_clp">Es handelt sich um eine strukturierte Aufbereitung und Zusammenfassung — <strong>keine Rechtsberatung</strong> und keine rechtliche Vertretung. Rechtliche Beurteilungen, verbindliche Auskünfte und das Betreiben einer Klage obliegen einem Rechtsanwalt; die Einschätzungen sind unverbindlich.</p>
+      </div>
+    </section>
+
+    <!-- AVV -->
+    <section class="doc">
+      <h2 data-i18n="avv_h">2 · Auftragsverarbeitungsvertrag (AVV)</h2>
+      <p class="note" data-i18n="avv_note">Verbindliche Vertragssprache ist Deutsch. Nachstehend die deutsche Fassung (Vorlage — vor verbindlichem Einsatz anwaltlich prüfen lassen).</p>
+      <div class="avv-scroll">
+        <p><strong>Auftragsverarbeitungsvertrag (AVV) gemäß Art. 28 DSGVO</strong></p>
+        <p><strong>zwischen</strong> Gabor Simon und Kristijan Nika (gemeinsam „die Verantwortlichen")<br>
+        <strong>und</strong> Franchcom Ltd &amp; Co KG — Franchcom Consulting, Andreas Pohlodek, Waaggasse 5/21, 1040 Wien („der Auftragsverarbeiter").</p>
+
+        <h3>§1 Gegenstand und Dauer</h3>
+        <p>Gegenstand ist die Verarbeitung personenbezogener Daten durch den Auftragsverarbeiter im Auftrag der Verantwortlichen zum Zweck der strukturierten Aufbereitung des übergebenen Sachverhalts (Erst-Sichtung und ggf. weitere Aufbereitung). Die Dauer entspricht der Laufzeit des Auftrags; der Vertrag endet mit Löschung/Rückgabe der Daten gemäß §8.</p>
+
+        <h3>§2 Art, Zweck, Datenarten, Betroffene</h3>
+        <p>Art/Zweck: Sichtung, Ordnung, Zusammenfassung und Aufbereitung der Unterlagen als Entscheidungsgrundlage. Datenarten: Dokumente, E-Mails, Chat-/WhatsApp-Verläufe, Behördenkorrespondenz, darin enthaltene Stamm- und Kommunikationsdaten sowie ggf. besondere Kategorien (Art. 9 DSGVO). Betroffene: die Verantwortlichen sowie in den Unterlagen genannte Dritte.</p>
+
+        <h3>§3 Pflichten des Auftragsverarbeiters</h3>
+        <p>Verarbeitung nur auf dokumentierte Weisung; Verpflichtung befugter Personen zur Vertraulichkeit; geeignete TOM gemäß §4; Unterstützung der Verantwortlichen bei Betroffenenrechten, Meldepflichten und Datenschutz-Folgenabschätzung; unverzügliche Meldung von Datenschutzverletzungen; Löschung/Rückgabe gemäß §8; Bereitstellung erforderlicher Nachweise.</p>
+
+        <h3>§4 Technische und organisatorische Maßnahmen (TOM)</h3>
+        <p>Speicherung ausschließlich in einem nach ISO 27001 zertifizierten Rechenzentrum in Deutschland (EU), kein Drittlandtransfer; verschlüsselte Übertragung (SSL/TLS); Zugriff nur über gesicherte Anmeldung und nur für berechtigte Personen; Protokollierung der Zugriffe (Audit-Log); Schutz vor Veränderung/Löschung durch Unbefugte, Versionierung; Sicherstellung von Vertraulichkeit, Integrität, Verfügbarkeit und Belastbarkeit.</p>
+
+        <h3>§5 Unterauftragsverarbeiter</h3>
+        <p>Die Verantwortlichen stimmen dem Einsatz folgenden Unterauftragsverarbeiters zu: <strong>Hetzner Online GmbH</strong>, Industriestr. 25, 91710 Gunzenhausen, Deutschland (Hosting/Storage Share, Serverstandort Deutschland). Weitere Unterauftragsverarbeiter nur nach vorheriger Information; ein Widerspruchsrecht besteht.</p>
+
+        <h3>§6 Verantwortliche</h3>
+        <p>Die Verantwortlichen sind für die Zulässigkeit der Verarbeitung und die Wahrung der Betroffenenrechte verantwortlich. Weisungen erfolgen grundsätzlich in Textform.</p>
+
+        <h3>§7 Löschung / Rückgabe</h3>
+        <p>Nach Abschluss des Auftrags werden die Daten nach Wahl der Verantwortlichen gelöscht oder zurückgegeben, sofern keine gesetzliche Aufbewahrungspflicht besteht. Die Löschung wird auf Wunsch bestätigt.</p>
+
+        <h3>§8 Schlussbestimmungen</h3>
+        <p>Es gilt österreichisches Recht. Unwirksame Bestimmungen berühren die Wirksamkeit des übrigen Vertrags nicht. Änderungen bedürfen der Textform.</p>
+
+        <p class="note"><em>Diese Fassung ist eine Vorlage und vor verbindlichem Einsatz anwaltlich zu prüfen.</em></p>
+      </div>
+    </section>
+
+    <!-- BESTÄTIGUNG -->
+    <section class="doc">
+      <h2 data-i18n="conf_h">3 · Online bestätigen</h2>
+      <p data-i18n="conf_p">Bitte bestätigen Sie mit Ihrem Namen. Jede der beiden Personen bestätigt einzeln.</p>
+      <form id="form">
+        <!-- Bestätigungen werden in Supabase (Tabelle: bestaetigungen) gespeichert. URL + anon key unten im Script eintragen. -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <label for="name" data-i18n="f_name">Vor- und Nachname</label>
+        <input type="text" id="name" name="Name" required autocomplete="name" />
+
+        <label for="email" data-i18n="f_email">E-Mail (optional)</label>
+        <input type="email" id="email" name="E-Mail" autocomplete="email" />
+
+        <div class="check">
+          <input type="checkbox" id="agree" name="Bestaetigung" value="Gelesen und einverstanden (Angebot + AVV)" required />
+          <label for="agree" style="margin:0;font-weight:500;" data-i18n="f_agree">Ich habe das Angebot und den Auftragsverarbeitungsvertrag (AVV) gelesen und stimme beidem zu.</label>
+        </div>
+
+        <button class="btn" type="submit" id="submit" data-i18n="f_btn">Bestätigen</button>
+        <p id="err" data-i18n="f_err">Es ist ein Fehler aufgetreten. Bitte später erneut versuchen oder per E-Mail melden.</p>
+      </form>
+      <div id="done">
+        <strong data-i18n="done_h">Vielen Dank — Ihre Bestätigung ist eingegangen.</strong>
+        <p style="margin:0.5rem 0 0" data-i18n="done_p">Sie können jetzt zum Login gehen. <a href="/kundenbereich">Zum Kundenbereich →</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>© 2026 Franchcom Consulting · Andreas Pohlodek · office@franchcom.at</footer>
+
+<script>
+  const I18N = {
+    hu: {
+      eyebrow: "Franchcom Consulting · GreenMIG projekt",
+      h1: "Megállapodás és adatvédelem",
+      lead: "Kérjük, olvassa el az ajánlatot és az adatfeldolgozási megállapodást (AVV), majd alább erősítse meg mindkettőt. Ezt követően kezdjük a díjmentes első átnézést.",
+      ang_h: "1 · Ajánlat — Díjmentes első átnézés és feldolgozás",
+      ang_s1h: "1. lépés — Díjmentes első átnézés",
+      ang_s1p: "A Franchcom Consulting átnézi az Ön által rendelkezésre bocsátott dokumentumokat (iratok, e-mailek, WhatsApp, hatósági levelezés) és a személyes beszélgetést, hogy felmérje a terjedelmet és a ráfordítást. Ez az első átnézés díjmentes és nem kötelező érvényű.",
+      ang_s2h: "2. lépés — Ajánlat a feldolgozásra",
+      ang_s2p: "Az átnézés alapján konkrét ajánlatot kap a további feldolgozásra: a tényállás semleges, összefüggő összefoglalása (kronológia, álláspontok, vitás pontok), a kiindulási helyzet értékelése és a nyitott kérdések kidolgozása — döntési alapként egy ügyvéd általi további intézéshez (különösen a Dr. Dietz elleni lehetséges igények tekintetében). Költség csak az ajánlat elfogadása után merül fel.",
+      ang_clh: "Tisztázás",
+      ang_clp: "Ez strukturált feldolgozás és összefoglalás — <strong>nem jogi tanácsadás</strong> és nem jogi képviselet. A jogi értékelés, a kötelező érvényű tájékoztatás és a per vitele ügyvéd feladata; az értékelések nem kötelező érvényűek.",
+      avv_h: "2 · Adatfeldolgozási megállapodás (AVV)",
+      avv_note: "A szerződés kötelező érvényű nyelve a német. Alább a német változat (minta — kötelező használat előtt ügyvéddel ellenőriztetni).",
+      conf_h: "3 · Megerősítés online",
+      conf_p: "Kérjük, erősítse meg a nevével. Mindkét személy külön erősíti meg.",
+      f_name: "Vezeték- és keresztnév",
+      f_email: "E-mail (opcionális)",
+      f_agree: "Elolvastam az ajánlatot és az adatfeldolgozási megállapodást (AVV), és mindkettővel egyetértek.",
+      f_btn: "Megerősítés",
+      f_err: "Hiba történt. Kérjük, próbálja meg később, vagy jelezze e-mailben.",
+      done_h: "Köszönjük — a megerősítése megérkezett.",
+      done_p: "Most beléphet. <a href=\"/kundenbereich\">Az ügyfélterülethez →</a>"
+    }
+  };
+  const DE = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => { DE[el.getAttribute('data-i18n')] = el.innerHTML; });
+  I18N.de = DE;
+  function setLang(l){
+    if(!I18N[l]) l='de';
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if(I18N[l][k]!==undefined) el.innerHTML = I18N[l][k];
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang===l));
+    try{localStorage.setItem('fc_ver_lang',l);}catch(e){}
+  }
+  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  let start='de';
+  try{ const s=localStorage.getItem('fc_ver_lang'); if(s) start=s; else { const n=(navigator.language||'de').slice(0,2); if(n==='hu') start='hu'; } }catch(e){}
+  setLang(start);
+
+  // === Supabase: Projekt-URL und anon (public) key ===
+  const SUPABASE_URL = 'https://wnrcsosmphcvrxseothv.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InducmNzb3NtcGhjdnJ4c2VvdGh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0OTE3ODcsImV4cCI6MjEwMDA2Nzc4N30.U5XA56YZM6FcxJ49XS39WcKo_zkv_ByGmt7uDu7bKDY';
+
+  const form = document.getElementById('form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    document.getElementById('err').style.display='none';
+    if (form.botcheck.checked) return; // Spam-Honeypot
+    const btn = document.getElementById('submit'); btn.disabled = true;
+    const body = {
+      name: form.Name.value.trim(),
+      email: form['E-Mail'].value.trim() || null,
+      sprache: document.documentElement.lang,
+      bestaetigung: form.Bestaetigung.checked ? 'Gelesen und einverstanden (Angebot + AVV)' : null
+    };
+    try {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/bestaetigungen', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(body)
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+      } else { throw new Error('fail'); }
+    } catch (err) {
+      document.getElementById('err').style.display = 'block';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
