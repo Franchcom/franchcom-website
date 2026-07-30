@@ -65,6 +65,18 @@
     background:var(--accent); padding:0.55rem 1.1rem; border-radius:999px; transition:transform .2s; }
   .card:hover .go { transform:translateX(2px); }
 
+  .agree { margin:0 0 1.6rem; padding:1.4rem 1.5rem; border-radius:14px; border:1px solid var(--hair-strong);
+    background:color-mix(in srgb, var(--accent) 7%, var(--bg-raise)); display:flex; align-items:center;
+    gap:1.4rem; flex-wrap:wrap; justify-content:space-between; }
+  .agree .txt { flex:1 1 320px; }
+  .agree .agree-eyebrow { display:block; margin-bottom:0.4rem; font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--accent); font-weight:700; }
+  .agree h3 { font-family:var(--serif); font-weight:500; font-size:1.3rem; margin:0 0 0.35rem; }
+  .agree p { margin:0; color:var(--muted); font-size:0.92rem; max-width:54ch; }
+  .agree .btn { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.95rem; font-weight:600;
+    color:var(--accent-ink); background:var(--accent); padding:0.8rem 1.5rem; border-radius:999px; white-space:nowrap;
+    box-shadow:0 12px 28px color-mix(in srgb, var(--accent) 30%, transparent); transition:transform .2s; }
+  .agree .btn:hover { transform:translateY(-2px); }
+
   .note { border-top:1px solid var(--hair); padding:1.5rem 0; margin-top:0.5rem; color:var(--muted); font-size:0.9rem; }
   .note b { color:var(--ink); }
   footer { border-top:1px solid var(--hair); padding:1.5rem 0 2.5rem; color:var(--muted); font-size:0.82rem; }
@@ -104,6 +116,15 @@
   </section>
 
   <div class="wrap">
+    <div class="agree">
+      <div class="txt">
+        <span class="agree-eyebrow" data-i18n="agree_eyebrow">Formelles vorab</span>
+        <h3 data-i18n="agree_h">Angebot &amp; Datenschutz (AVV)</h3>
+        <p data-i18n="agree_p">Hier finden Sie unser Angebot und die Auftragsverarbeitungs-Vereinbarung (AVV) — in Ruhe ansehen und mit einem Klick online bestätigen. Erst danach beginnt die Bearbeitung.</p>
+      </div>
+      <a class="btn" href="/vereinbarung"><span data-i18n="agree_btn">Ansehen &amp; online bestätigen</span> →</a>
+    </div>
+
     <div class="cards">
       <!-- Jede Kachel: href = Nextcloud „Nur-Upload"-Link der jeweiligen Kategorie (siehe LIESMICH) -->
       <a class="card" style="--c:var(--c-wa)" href="https://portal.franchcom.at/s/4ecXarziCcBxWMS">
@@ -174,6 +195,10 @@
       foto_h: "Fényképek és egyéb",
       foto_p: "Képek, képernyőképek és minden, ami más kategóriába nem illik.",
       upload: "Feltöltés →",
+      agree_eyebrow: "Formális előzetesen",
+      agree_h: "Ajánlat és adatvédelem (AVV)",
+      agree_p: "Itt találja ajánlatunkat és az adatfeldolgozási megállapodást (AVV) — nyugodtan tekintse meg, és egy kattintással online erősítse meg. A feldolgozás csak ezután kezdődik.",
+      agree_btn: "Megtekintés és online megerősítés",
       note_b: "Röviden és fontos:",
       note_p: "Inkább többet töltsön fel, mint keveset — a szűrést mi végezzük. Kérjük, eredeti fájlokat (semmit ne vágjon le). Kérdés esetén forduljon hozzánk bizalommal."
     }
