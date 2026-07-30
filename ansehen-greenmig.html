@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GreenMIG · Falleinsicht — Franchcom Consulting</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#1f6a63" />
+<style>
+  :root {
+    --bg: #f4efe6; --bg-raise: #ece5d7; --ink: #1b2523; --muted: #6c736e;
+    --hair: rgba(27,37,35,0.14); --hair-strong: rgba(27,37,35,0.26);
+    --accent: #1f6a63; --accent-ink: #ffffff; --shadow: rgba(27,37,35,0.10);
+    --c-gabor: #4f7f9a; --c-kristijan: #4c8a5a; --c-analyse: #a6864a;
+    --serif: 'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;
+    --sans: ui-sans-serif, system-ui, -apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --maxw: 900px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0c100f; --bg-raise:#141a19; --ink:#ece7dd; --muted:#8f9793;
+      --hair:rgba(236,231,221,0.12); --hair-strong:rgba(236,231,221,0.24);
+      --accent:#56a79e; --accent-ink:#06110f; --shadow:rgba(0,0,0,0.45);
+      --c-gabor:#7d9bb0; --c-kristijan:#6fae7c; --c-analyse:#c7a96b; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.25rem,5vw,2.5rem); }
+  a { color:inherit; text-decoration:none; }
+
+  header { border-bottom:1px solid var(--hair); background:color-mix(in srgb, var(--bg) 86%, transparent); }
+  .bar { display:flex; align-items:center; justify-content:space-between; height:70px; gap:1rem; }
+  .brand { display:flex; align-items:center; gap:0.6rem; font-family:var(--serif); font-size:1.3rem; }
+  .brand .mark { width:10px; height:10px; transform:rotate(45deg); background:var(--accent); border-radius:1px; }
+  .brand .sub { font-family:var(--sans); font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .lock { font-size:0.75rem; color:var(--muted); display:flex; align-items:center; gap:0.4rem; }
+  @media (max-width:560px){ .lock .lock-txt { display:none; } }
+
+  .hero { padding:clamp(2.5rem,6vw,4rem) 0 clamp(1.5rem,3vw,2rem); }
+  .eyebrow { font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .hero h1 { font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,4.5vw,2.8rem); line-height:1.1; margin:1rem 0 0; }
+  .hero p { max-width:62ch; color:var(--ink); opacity:0.85; margin:1.1rem 0 0; font-size:1.02rem; }
+
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; padding:0 0 1.5rem; }
+  @media (max-width:760px){ .cards { grid-template-columns:1fr; } }
+  .card { position:relative; display:flex; flex-direction:column; gap:0.4rem;
+    padding:1.6rem 1.5rem; border-radius:14px; background:var(--bg-raise); border:1px solid var(--hair);
+    transition:transform .2s, border-color .2s, box-shadow .2s; }
+  .card::before { content:""; position:absolute; left:0; top:1rem; bottom:1rem; width:3px; border-radius:3px; background:var(--c); }
+  .card:hover { transform:translateY(-3px); border-color:var(--hair-strong); box-shadow:0 16px 36px var(--shadow); }
+  .card .ico { width:46px; height:46px; border-radius:12px; display:grid; place-items:center;
+    background:color-mix(in srgb, var(--c) 16%, transparent); color:var(--c); margin-bottom:0.5rem; }
+  .card h3 { font-family:var(--serif); font-weight:500; font-size:1.3rem; margin:0; }
+  .card p { margin:0; color:var(--muted); font-size:0.9rem; flex:1; }
+  .card .go { margin-top:0.9rem; display:inline-flex; align-items:center; gap:0.4rem;
+    align-self:flex-start; font-size:0.9rem; font-weight:600; color:var(--accent-ink);
+    background:var(--accent); padding:0.55rem 1.15rem; border-radius:999px; transition:transform .2s; }
+  .card:hover .go { transform:translateX(2px); }
+
+  .note { border-top:1px solid var(--hair); padding:1.5rem 0; margin-top:0.5rem; color:var(--muted); font-size:0.9rem; }
+  .note b { color:var(--ink); }
+  footer { border-top:1px solid var(--hair); padding:1.5rem 0 2.5rem; color:var(--muted); font-size:0.82rem; }
+  .foot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem; width:100%; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <span class="brand"><span class="mark"></span>Franchcom<span class="sub">Consulting</span></span>
+    <span class="lock">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      <span class="lock-txt">Geschützter Datenraum</span>
+    </span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Projekt GreenMIG · Falleinsicht</span>
+      <h1>Unterlagen ansehen</h1>
+      <p>
+        Über die Kacheln unten öffnest du direkt den geschützten Datenraum. Beim ersten Klick
+        meldest du dich einmalig mit deinen Zugangsdaten an. Du kannst alles <b>ansehen und
+        herunterladen</b> — Ändern oder Löschen ist nicht möglich.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cards">
+      <a class="card" style="--c:var(--c-gabor)" href="https://portal.franchcom.at/apps/files/?dir=/GreenMIG/00_Eingang/Gabor-Simon">
+        <div class="ico"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg></div>
+        <h3>Unterlagen Gabor Simon</h3>
+        <p>Alle von Gabor Simon hochgeladenen Unterlagen — WhatsApp, E-Mails, Behörden, Dokumente und Fotos.</p>
+        <span class="go">Öffnen →</span>
+      </a>
+
+      <a class="card" style="--c:var(--c-kristijan)" href="https://portal.franchcom.at/apps/files/?dir=/GreenMIG/00_Eingang/Kristijan-Nika">
+        <div class="ico"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg></div>
+        <h3>Unterlagen Kristijan Nika</h3>
+        <p>Alle von Kristijan Nika hochgeladenen Unterlagen — WhatsApp, E-Mails, Behörden, Dokumente und Fotos.</p>
+        <span class="go">Öffnen →</span>
+      </a>
+
+      <a class="card" style="--c:var(--c-analyse)" href="https://portal.franchcom.at/apps/files/?dir=/GreenMIG">
+        <div class="ico"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-3"/></svg></div>
+        <h3>Berichte &amp; Analyse</h3>
+        <p>Zusammenfassungen, Bewertungen und die vollständige Fallaufbereitung von Franchcom (inkl. aller Arbeitsordner).</p>
+        <span class="go">Öffnen →</span>
+      </a>
+    </div>
+
+    <div class="note">
+      <p><b>Hinweis:</b> Diese Seite ist ein Schnellzugang — die Dateien selbst liegen sicher im Portal
+      (portal.franchcom.at). Der Zugang ist auf berechtigte Personen beschränkt und protokolliert.
+      Fragen? <a href="mailto:office@franchcom.at" style="color:var(--accent)">office@franchcom.at</a></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Franchcom Consulting · Andreas Pohlodek</span>
+    <span>office@franchcom.at · +43 664 858 7170</span>
+  </div>
+</footer>
+
+</body>
+</html>
