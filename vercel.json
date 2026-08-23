@@ -2,6 +2,18 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/consulting",
+      "destination": "https://consulting.franchcom.at/",
+      "permanent": true
+    },
+    {
+      "source": "/consulting/:path*",
+      "destination": "https://consulting.franchcom.at/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
