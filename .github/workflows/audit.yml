@@ -1,0 +1,88 @@
+name: Security Audit
+
+# Dry Run bei Pull Requests, echter Lauf bei Push auf main,
+# taeglich um 02:20 UTC, und jederzeit manuell ausloesbar.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: "20 2 * * *"
+  workflow_dispatch:
+    inputs:
+      send:
+        description: "Report an das Security Center senden (nur wenn Secrets konfiguriert)"
+        type: boolean
+        default: false
+
+# Minimale Berechtigungen. Der Runner liest, er schreibt nichts.
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Tests
+        run: node --test "audit/tests/*.test.mjs"
+
+      - name: Audit ausführen (Dry Run)
+        if: github.event_name == 'pull_request'
+        run: node audit/run.mjs --dry-run --out audit-report.json
+        env:
+          # Nur Lesezugriff auf die Regeln des Standardbranches.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Audit ausführen und melden
+        if: github.event_name != 'pull_request'
+        run: |
+          if [ "${{ github.event.inputs.send }}" = "true" ] || [ "${{ github.event_name }}" = "schedule" ]; then
+            node audit/run.mjs --send --out audit-report.json
+          else
+            node audit/run.mjs --dry-run --out audit-report.json
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Secrets werden hier ausschliesslich referenziert, nie im Repository
+          # abgelegt. Solange sie fehlen (Registrierung der App erfolgt zentral),
+          # meldet der Runner KEIN VERSAND und beendet sich sauber mit Exit 0.
+          SC_REPORT_URL: ${{ secrets.SC_REPORT_URL }}
+          SC_PRIVATE_KEY: ${{ secrets.SC_PRIVATE_KEY }}
+          SC_KEY_VERSION: ${{ secrets.SC_KEY_VERSION }}
+
+      - name: Report als Artefakt ablegen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-report-${{ github.run_id }}
+          path: audit-report.json
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Fehler-Heartbeat bei Fehlschlag
+        # Schweigen ist laut Vertrag die schlechteste Variante. Der Runner
+        # beendet einen vollstaendigen Lauf immer mit Exit 0 -- auch bei RED.
+        # failure() bedeutet hier also wirklich: Runner oder Sanitizer kaputt.
+        # runner_healthy=false ist dann korrekt.
+        if: failure() && github.event_name == 'schedule'
+        run: node audit/run.mjs --heartbeat-failure --send || true
+        env:
+          SC_REPORT_URL: ${{ secrets.SC_REPORT_URL }}
+          SC_PRIVATE_KEY: ${{ secrets.SC_PRIVATE_KEY }}
+          SC_KEY_VERSION: ${{ secrets.SC_KEY_VERSION }}

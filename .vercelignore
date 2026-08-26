@@ -1,2 +1,8 @@
 # interne Planungsunterlagen — nicht öffentlich ausliefern
 _planning
+
+# Audit-Runner und CI niemals mit ausliefern (Fehlerklasse: interne
+# Pruefwerkzeuge waeren sonst unter franchcom.at/audit/ oeffentlich abrufbar)
+audit
+.github
+audit-report.json

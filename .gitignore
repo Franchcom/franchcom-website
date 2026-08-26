@@ -1,1 +1,8 @@
 _planning/
+
+# Audit-Runner: lokale Berichte und Schluesselmaterial niemals versionieren
+audit-report.json
+.env
+.env.*
+*.pem
+*.key
