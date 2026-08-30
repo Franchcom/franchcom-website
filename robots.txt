@@ -23,4 +23,9 @@ Disallow: /upload-kristijan.html
 Disallow: /ansehen-greenmig
 Disallow: /ansehen-greenmig.html
 
+# Anmeldeseite und Schnittstelle: nichts, was in einen Index gehoert.
+Disallow: /anmelden
+Disallow: /anmelden.html
+Disallow: /api/
+
 Sitemap: https://franchcom.at/sitemap.xml

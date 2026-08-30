@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anmeldung — Franchcom Consulting</title>
+<meta name="description" content="Anmeldung zu den geschützten Mandatsseiten von Franchcom Consulting." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#1f6a63" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<style>
+  :root {
+    --bg: #f4efe6; --bg-raise: #ece5d7; --ink: #1b2523; --muted: #6c736e;
+    --hair: rgba(27,37,35,0.14); --hair-strong: rgba(27,37,35,0.26);
+    --accent: #1f6a63; --accent-ink: #ffffff; --shadow: rgba(27,37,35,0.10);
+    --serif: 'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;
+    --sans: ui-sans-serif, system-ui, -apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0c100f; --bg-raise:#141a19; --ink:#ece7dd; --muted:#8f9793;
+      --hair:rgba(236,231,221,0.12); --hair-strong:rgba(236,231,221,0.24);
+      --accent:#56a79e; --accent-ink:#06110f; --shadow:rgba(0,0,0,0.45); }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased; display:flex; flex-direction:column; }
+  a { color:inherit; }
+  .wrap { max-width:560px; margin:0 auto; padding:0 clamp(1.25rem,5vw,2rem); width:100%; }
+
+  header { border-bottom:1px solid var(--hair); }
+  .bar { max-width:560px; margin:0 auto; padding:0 clamp(1.25rem,5vw,2rem);
+    display:flex; align-items:center; justify-content:space-between; height:68px; gap:1rem; }
+  .brand { display:flex; align-items:center; gap:0.6rem; font-family:var(--serif); font-size:1.25rem;
+    text-decoration:none; color:inherit; }
+  .brand .mark { width:10px; height:10px; transform:rotate(45deg); background:var(--accent); border-radius:1px; }
+  .brand .sub { font-family:var(--sans); font-size:0.66rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--muted); font-weight:600; }
+
+  main { flex:1; display:flex; align-items:center; padding:3rem 0; }
+  h1 { font-family:var(--serif); font-weight:500; font-size:1.6rem; margin:0 0 0.4rem; }
+  .lead { color:var(--muted); margin:0 0 1.8rem; font-size:0.95rem; }
+
+  .karte { background:var(--bg-raise); border:1px solid var(--hair);
+    border-radius:14px; padding:clamp(1.25rem,4vw,1.9rem); box-shadow:0 1px 2px var(--shadow); }
+  label { display:block; font-size:0.78rem; font-weight:700; letter-spacing:0.04em;
+    text-transform:uppercase; color:var(--muted); margin:0 0 0.4rem; }
+  input { width:100%; padding:0.7rem 0.85rem; border:1px solid var(--hair-strong); border-radius:9px;
+    background:var(--bg); color:var(--ink); font-family:inherit; font-size:1rem; }
+  input:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .feld + .feld { margin-top:1.1rem; }
+  button { margin-top:1.5rem; width:100%; padding:0.75rem 1rem; border:1px solid var(--accent);
+    border-radius:9px; background:var(--accent); color:var(--accent-ink); font-family:inherit;
+    font-size:1rem; font-weight:600; cursor:pointer; }
+  button[disabled] { opacity:0.6; cursor:default; }
+  .fehler { margin-top:1rem; color:#a4262c; font-size:0.9rem; min-height:1.4em; }
+  @media (prefers-color-scheme: dark) { .fehler { color:#f1707a; } }
+  .hinweis { margin-top:1.6rem; font-size:0.85rem; color:var(--muted); }
+
+  footer { border-top:1px solid var(--hair); padding:1.4rem 0; font-size:0.82rem; color:var(--muted); }
+  footer .wrap { display:flex; gap:1.2rem; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/">
+      <span class="mark" aria-hidden="true"></span>
+      <span>Franchcom <span class="sub">Consulting</span></span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>Anmeldung</h1>
+    <p class="lead">Diese Seite ist Ihrem Mandat vorbehalten. Bitte geben Sie das Kennwort ein,
+      das Sie von Ihrem Ansprechpartner erhalten haben.</p>
+
+    <div class="karte">
+      <form id="form" novalidate>
+        <div class="feld">
+          <label for="bereich">Bereich</label>
+          <input id="bereich" name="bereich" autocomplete="username" required
+                 spellcheck="false" autocapitalize="none" />
+        </div>
+        <div class="feld">
+          <label for="kennwort">Kennwort</label>
+          <input id="kennwort" name="kennwort" type="password" autocomplete="current-password" required />
+        </div>
+        <button id="senden" type="submit">Anmelden</button>
+        <p class="fehler" id="fehler" role="alert" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <p class="hinweis">Die Anmeldung gilt acht Stunden. Wenn Sie kein Kennwort haben oder es nicht
+      mehr funktioniert, wenden Sie sich bitte an Ihren Ansprechpartner.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutz</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('form');
+  var fehlerFeld = document.getElementById('fehler');
+  var knopf = document.getElementById('senden');
+  var bereichFeld = document.getElementById('bereich');
+
+  // Die Mandatsseiten und der Bereich, zu dem sie gehoeren. Dieselbe Tafel
+  // steht in middleware.js; hier dient sie nur der Bequemlichkeit, damit das
+  // Feld vorausgefuellt ist. Entschieden wird ausschliesslich auf dem Server.
+  var BEREICH_JE_PFAD = {
+    '/kundenbereich': 'mandant',
+    '/vereinbarung': 'mandant',
+    '/upload-gabor': 'gabor',
+    '/upload-kristijan': 'kristijan',
+    '/ansehen-greenmig': 'greenmig'
+  };
+
+  /**
+   * Das Ziel darf ausschliesslich ein eigener Pfad dieser Seite sein.
+   * Ohne diese Pruefung waere ?weiter=https://fremde.seite eine offene
+   * Weiterleitung: ein Link, der aussieht, als fuehre er zu franchcom.at,
+   * und woanders landet.
+   */
+  function sicheresZiel(roh) {
+    if (typeof roh !== 'string' || roh.charAt(0) !== '/' || roh.charAt(1) === '/') return null;
+    var ohneEndung = roh.replace(/\.html$/, '');
+    return Object.prototype.hasOwnProperty.call(BEREICH_JE_PFAD, ohneEndung) ? roh : null;
+  }
+
+  var ziel = sicheresZiel(new URLSearchParams(location.search).get('weiter'));
+  if (ziel) {
+    var vor = BEREICH_JE_PFAD[ziel.replace(/\.html$/, '')];
+    if (vor) { bereichFeld.value = vor; bereichFeld.readOnly = true; }
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    fehlerFeld.textContent = '';
+    knopf.disabled = true;
+    try {
+      var antwort = await fetch('/api/anmelden', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bereich: bereichFeld.value,
+          kennwort: document.getElementById('kennwort').value
+        })
+      });
+      if (antwort.ok) { location.assign(ziel || '/kundenbereich'); return; }
+      if (antwort.status === 503) {
+        fehlerFeld.textContent = 'Der Zugang ist derzeit nicht konfiguriert. Bitte wenden Sie sich an Ihren Ansprechpartner.';
+      } else {
+        fehlerFeld.textContent = 'Bereich oder Kennwort stimmt nicht.';
+      }
+    } catch (fehler) {
+      fehlerFeld.textContent = 'Die Anmeldung war nicht möglich. Bitte versuchen Sie es noch einmal.';
+    } finally {
+      knopf.disabled = false;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

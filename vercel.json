@@ -32,9 +32,16 @@
       ]
     },
     {
-      "source": "/(kundenbereich|vereinbarung|upload-gabor|upload-kristijan|ansehen-greenmig)(.html)?",
+      "source": "/(kundenbereich|vereinbarung|upload-gabor|upload-kristijan|ansehen-greenmig|anmelden)(.html)?",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive, nosnippet" },
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
         { "key": "Cache-Control", "value": "no-store" }
       ]
     }
