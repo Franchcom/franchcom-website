@@ -60,8 +60,32 @@ function git(args) {
 }
 
 /** Ein Abruf je Seite; Redirects sind selbst Pruefgegenstand. */
+/**
+ * Ein Abruf mit zwei Nachschlaegen.
+ *
+ * Ein einzelner Fehlversuch sagt nichts ueber die Seite -- er sagt etwas ueber
+ * das Netz in dieser Sekunde. Am 29.08.2026 hat genau das einen echten Befund
+ * verschluckt: Der Abruf stolperte, die Kontrolle meldete "keine Auskunft",
+ * und eine fehlende Inhaltsrichtlinie blieb unbemerkt.
+ *
+ * Drei Anlaeufe mit wachsender Pause. Was danach nicht antwortet, bleibt GRAY
+ * -- die Wiederholung soll den Zufall ausschliessen, nicht ein Urteil erzwingen.
+ */
+async function mitNachschlag(anlauf) {
+  let letzter;
+  for (const pause of [0, 800, 2500]) {
+    if (pause) await new Promise((r) => setTimeout(r, pause));
+    try {
+      return await anlauf();
+    } catch (e) {
+      letzter = e;
+    }
+  }
+  throw letzter;
+}
+
 async function fetchPage(url) {
-  const res = await fetch(url, { redirect: "manual" });
+  const res = await mitNachschlag(() => fetch(url, { redirect: "manual" }));
   const headers = {};
   for (const [k, v] of res.headers) headers[k.toLowerCase()] = v;
   return { status: res.status, headers, body: await res.text() };
