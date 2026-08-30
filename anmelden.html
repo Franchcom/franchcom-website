@@ -13,48 +13,67 @@
     --bg: #f4efe6; --bg-raise: #ece5d7; --ink: #1b2523; --muted: #6c736e;
     --hair: rgba(27,37,35,0.14); --hair-strong: rgba(27,37,35,0.26);
     --accent: #1f6a63; --accent-ink: #ffffff; --shadow: rgba(27,37,35,0.10);
+    --warn: #a4262c;
     --serif: 'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;
     --sans: ui-sans-serif, system-ui, -apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root { --bg:#0c100f; --bg-raise:#141a19; --ink:#ece7dd; --muted:#8f9793;
       --hair:rgba(236,231,221,0.12); --hair-strong:rgba(236,231,221,0.24);
-      --accent:#56a79e; --accent-ink:#06110f; --shadow:rgba(0,0,0,0.45); }
+      --accent:#56a79e; --accent-ink:#06110f; --shadow:rgba(0,0,0,0.45); --warn:#f1707a; }
   }
   * { box-sizing: border-box; }
   body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink); font-family:var(--sans);
     line-height:1.6; -webkit-font-smoothing:antialiased; display:flex; flex-direction:column; }
   a { color:inherit; }
-  .wrap { max-width:560px; margin:0 auto; padding:0 clamp(1.25rem,5vw,2rem); width:100%; }
+  .wrap { max-width:600px; margin:0 auto; padding:0 clamp(1.25rem,5vw,2rem); width:100%; }
 
   header { border-bottom:1px solid var(--hair); }
-  .bar { max-width:560px; margin:0 auto; padding:0 clamp(1.25rem,5vw,2rem);
-    display:flex; align-items:center; justify-content:space-between; height:68px; gap:1rem; }
+  .bar { max-width:600px; margin:0 auto; padding:0 clamp(1.25rem,5vw,2rem);
+    display:flex; align-items:center; height:68px; }
   .brand { display:flex; align-items:center; gap:0.6rem; font-family:var(--serif); font-size:1.25rem;
     text-decoration:none; color:inherit; }
   .brand .mark { width:10px; height:10px; transform:rotate(45deg); background:var(--accent); border-radius:1px; }
   .brand .sub { font-family:var(--sans); font-size:0.66rem; letter-spacing:0.18em;
     text-transform:uppercase; color:var(--muted); font-weight:600; }
 
-  main { flex:1; display:flex; align-items:center; padding:3rem 0; }
-  h1 { font-family:var(--serif); font-weight:500; font-size:1.6rem; margin:0 0 0.4rem; }
-  .lead { color:var(--muted); margin:0 0 1.8rem; font-size:0.95rem; }
+  main { flex:1; padding:2.6rem 0 3.4rem; }
+  h1 { font-family:var(--serif); font-weight:500; font-size:1.65rem; margin:0 0 0.5rem; }
+  .lead { color:var(--muted); margin:0 0 1.6rem; font-size:0.95rem; }
+
+  .erklaerung { background:var(--bg-raise); border:1px solid var(--hair); border-left:3px solid var(--accent);
+    border-radius:10px; padding:1rem 1.15rem; margin:0 0 1.6rem; font-size:0.9rem; }
+  .erklaerung h2 { font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 0.5rem; font-weight:700; font-family:var(--sans); }
+  .erklaerung p { margin:0 0 0.65rem; }
+  .erklaerung p:last-child { margin-bottom:0; }
+
+  .reiter { display:flex; gap:0.4rem; margin:0 0 1.1rem; }
+  .reiter button { flex:1; padding:0.6rem 0.7rem; border:1px solid var(--hair-strong); border-radius:9px;
+    background:transparent; color:var(--muted); font-family:inherit; font-size:0.9rem; font-weight:600;
+    cursor:pointer; }
+  .reiter button[aria-selected="true"] { background:var(--accent); border-color:var(--accent);
+    color:var(--accent-ink); }
 
   .karte { background:var(--bg-raise); border:1px solid var(--hair);
     border-radius:14px; padding:clamp(1.25rem,4vw,1.9rem); box-shadow:0 1px 2px var(--shadow); }
-  label { display:block; font-size:0.78rem; font-weight:700; letter-spacing:0.04em;
-    text-transform:uppercase; color:var(--muted); margin:0 0 0.4rem; }
+  label { display:block; font-size:0.76rem; font-weight:700; letter-spacing:0.04em;
+    text-transform:uppercase; color:var(--muted); margin:0 0 0.35rem; }
   input { width:100%; padding:0.7rem 0.85rem; border:1px solid var(--hair-strong); border-radius:9px;
     background:var(--bg); color:var(--ink); font-family:inherit; font-size:1rem; }
   input:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
-  .feld + .feld { margin-top:1.1rem; }
-  button { margin-top:1.5rem; width:100%; padding:0.75rem 1rem; border:1px solid var(--accent);
+  input[readonly] { color:var(--muted); }
+  .feld + .feld { margin-top:1rem; }
+  .feld .hilfe { font-size:0.8rem; color:var(--muted); margin:0.35rem 0 0; text-transform:none;
+    letter-spacing:0; font-weight:400; }
+  button.senden { margin-top:1.4rem; width:100%; padding:0.75rem 1rem; border:1px solid var(--accent);
     border-radius:9px; background:var(--accent); color:var(--accent-ink); font-family:inherit;
     font-size:1rem; font-weight:600; cursor:pointer; }
-  button[disabled] { opacity:0.6; cursor:default; }
-  .fehler { margin-top:1rem; color:#a4262c; font-size:0.9rem; min-height:1.4em; }
-  @media (prefers-color-scheme: dark) { .fehler { color:#f1707a; } }
-  .hinweis { margin-top:1.6rem; font-size:0.85rem; color:var(--muted); }
+  button.senden[disabled] { opacity:0.6; cursor:default; }
+  .meldung { margin-top:0.9rem; font-size:0.9rem; min-height:1.4em; }
+  .meldung.fehler { color:var(--warn); }
+  .hinweis { margin-top:1.5rem; font-size:0.85rem; color:var(--muted); }
+  [hidden] { display:none !important; }
 
   footer { border-top:1px solid var(--hair); padding:1.4rem 0; font-size:0.82rem; color:var(--muted); }
   footer .wrap { display:flex; gap:1.2rem; flex-wrap:wrap; }
@@ -73,28 +92,78 @@
 
 <main>
   <div class="wrap">
-    <h1>Anmeldung</h1>
-    <p class="lead">Diese Seite ist Ihrem Mandat vorbehalten. Bitte geben Sie das Kennwort ein,
-      das Sie von Ihrem Ansprechpartner erhalten haben.</p>
+    <h1>Zugang zu Ihrem Mandat</h1>
+    <p class="lead">Diese Seiten sind Ihrem Mandat vorbehalten und nicht öffentlich abrufbar.</p>
+
+    <div class="erklaerung">
+      <h2>Beim ersten Mal einmal einrichten</h2>
+      <p>Es gibt kein Kennwort, das wir Ihnen vorgeben. <strong>Sie vergeben Ihr eigenes</strong> —
+        beim ersten Besuch, ein einziges Mal. Danach melden Sie sich damit an, wie bei jedem
+        anderen Zugang auch.</p>
+      <p>Dafür brauchen Sie den <strong>Einladungscode</strong>, den Sie von Ihrem Ansprechpartner
+        erhalten haben. Er sagt uns, dass Sie zu diesem Mandat gehören — mehr nicht. Ihr Kennwort
+        kennt danach nur noch Ihr Browser und Sie: wir speichern es nicht im Klartext und können
+        es Ihnen deshalb auch nicht nennen, wenn Sie es vergessen. Dann richten wir gemeinsam
+        einen neuen Zugang ein.</p>
+      <p>Ihr Kennwort braucht mindestens <strong>zwölf Zeichen</strong>. Nach acht Fehlversuchen
+        pausiert der Zugang eine Viertelstunde.</p>
+    </div>
+
+    <div class="reiter" role="tablist">
+      <button id="tab-anmelden" role="tab" aria-selected="true" aria-controls="form-anmelden">Anmelden</button>
+      <button id="tab-einrichten" role="tab" aria-selected="false" aria-controls="form-einrichten">Erstmalig einrichten</button>
+    </div>
 
     <div class="karte">
-      <form id="form" novalidate>
+      <form id="form-anmelden" role="tabpanel" novalidate>
         <div class="feld">
-          <label for="bereich">Bereich</label>
-          <input id="bereich" name="bereich" autocomplete="username" required
+          <label for="a-email">E-Mail-Adresse</label>
+          <input id="a-email" type="email" autocomplete="username" required
                  spellcheck="false" autocapitalize="none" />
         </div>
         <div class="feld">
-          <label for="kennwort">Kennwort</label>
-          <input id="kennwort" name="kennwort" type="password" autocomplete="current-password" required />
+          <label for="a-kennwort">Kennwort</label>
+          <input id="a-kennwort" type="password" autocomplete="current-password" required />
         </div>
-        <button id="senden" type="submit">Anmelden</button>
-        <p class="fehler" id="fehler" role="alert" aria-live="polite"></p>
+        <button class="senden" type="submit">Anmelden</button>
+        <p class="meldung" id="a-meldung" role="alert" aria-live="polite"></p>
+      </form>
+
+      <form id="form-einrichten" role="tabpanel" novalidate hidden>
+        <div class="feld">
+          <label for="e-bereich">Bereich</label>
+          <input id="e-bereich" required spellcheck="false" autocapitalize="none" />
+          <p class="hilfe">Steht auf Ihrer Einladung. Wenn Sie über einen Link hierher gekommen
+            sind, ist das Feld bereits ausgefüllt.</p>
+        </div>
+        <div class="feld">
+          <label for="e-einladung">Einladungscode</label>
+          <input id="e-einladung" required spellcheck="false" autocapitalize="none"
+                 autocomplete="one-time-code" />
+        </div>
+        <div class="feld">
+          <label for="e-email">Ihre E-Mail-Adresse</label>
+          <input id="e-email" type="email" autocomplete="username" required
+                 spellcheck="false" autocapitalize="none" />
+          <p class="hilfe">Damit melden Sie sich künftig an.</p>
+        </div>
+        <div class="feld">
+          <label for="e-kennwort">Kennwort, das Sie selbst wählen</label>
+          <input id="e-kennwort" type="password" autocomplete="new-password" required minlength="12" />
+          <p class="hilfe">Mindestens zwölf Zeichen. Am besten etwas, das Sie sich merken und
+            sonst nirgends verwenden.</p>
+        </div>
+        <div class="feld">
+          <label for="e-kennwort2">Kennwort wiederholen</label>
+          <input id="e-kennwort2" type="password" autocomplete="new-password" required minlength="12" />
+        </div>
+        <button class="senden" type="submit">Zugang einrichten</button>
+        <p class="meldung" id="e-meldung" role="alert" aria-live="polite"></p>
       </form>
     </div>
 
-    <p class="hinweis">Die Anmeldung gilt acht Stunden. Wenn Sie kein Kennwort haben oder es nicht
-      mehr funktioniert, wenden Sie sich bitte an Ihren Ansprechpartner.</p>
+    <p class="hinweis">Die Anmeldung gilt acht Stunden. Wenn etwas nicht funktioniert oder Sie
+      keinen Einladungscode haben, wenden Sie sich bitte an Ihren Ansprechpartner.</p>
   </div>
 </main>
 
@@ -107,11 +176,6 @@
 
 <script>
 (function () {
-  var form = document.getElementById('form');
-  var fehlerFeld = document.getElementById('fehler');
-  var knopf = document.getElementById('senden');
-  var bereichFeld = document.getElementById('bereich');
-
   // Die Mandatsseiten und der Bereich, zu dem sie gehoeren. Dieselbe Tafel
   // steht in middleware.js; hier dient sie nur der Bequemlichkeit, damit das
   // Feld vorausgefuellt ist. Entschieden wird ausschliesslich auf dem Server.
@@ -124,7 +188,7 @@
   };
 
   /**
-   * Das Ziel darf ausschliesslich ein eigener Pfad dieser Seite sein.
+   * Das Ziel darf ausschliesslich ein bekannter Mandatspfad dieser Seite sein.
    * Ohne diese Pruefung waere ?weiter=https://fremde.seite eine offene
    * Weiterleitung: ein Link, der aussieht, als fuehre er zu franchcom.at,
    * und woanders landet.
@@ -136,32 +200,101 @@
   }
 
   var ziel = sicheresZiel(new URLSearchParams(location.search).get('weiter'));
+  var bereichFeld = document.getElementById('e-bereich');
   if (ziel) {
     var vor = BEREICH_JE_PFAD[ziel.replace(/\.html$/, '')];
     if (vor) { bereichFeld.value = vor; bereichFeld.readOnly = true; }
   }
 
-  form.addEventListener('submit', async function (e) {
+  var tabAn = document.getElementById('tab-anmelden');
+  var tabEin = document.getElementById('tab-einrichten');
+  var formAn = document.getElementById('form-anmelden');
+  var formEin = document.getElementById('form-einrichten');
+
+  function zeige(welcher) {
+    var einrichten = welcher === 'einrichten';
+    tabAn.setAttribute('aria-selected', String(!einrichten));
+    tabEin.setAttribute('aria-selected', String(einrichten));
+    formAn.hidden = einrichten;
+    formEin.hidden = !einrichten;
+  }
+  tabAn.addEventListener('click', function () { zeige('anmelden'); });
+  tabEin.addEventListener('click', function () { zeige('einrichten'); });
+
+  function melde(feld, text, istFehler) {
+    feld.textContent = text;
+    feld.classList.toggle('fehler', Boolean(istFehler));
+  }
+
+  async function sende(nutzlast) {
+    var antwort = await fetch('/api/zugang', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nutzlast)
+    });
+    var daten = {};
+    try { daten = await antwort.json(); } catch (e) { /* leere Antwort */ }
+    return { status: antwort.status, ok: antwort.ok, daten: daten };
+  }
+
+  function textZuGrund(status, daten) {
+    if (status === 503) return 'Der Zugang ist derzeit nicht konfiguriert. Bitte wenden Sie sich an Ihren Ansprechpartner.';
+    if (status === 429) return 'Zu viele Fehlversuche. Bitte versuchen Sie es in etwa ' + (daten.minuten || 15) + ' Minuten erneut.';
+    switch (daten.grund) {
+      case 'kennwort-zu-kurz': return 'Das Kennwort braucht mindestens ' + (daten.mindestens || 12) + ' Zeichen.';
+      case 'adresse': return 'Bitte geben Sie eine gültige E-Mail-Adresse an.';
+      case 'einladung-ungueltig': return 'Bereich oder Einladungscode stimmt nicht.';
+      case 'bereits-eingerichtet': return 'Für diese Adresse besteht in diesem Bereich bereits ein Zugang. Bitte melden Sie sich an.';
+      case 'bereich-voll': return 'Für diesen Bereich sind bereits alle Zugänge vergeben. Bitte wenden Sie sich an Ihren Ansprechpartner.';
+      default: return 'E-Mail-Adresse oder Kennwort stimmt nicht.';
+    }
+  }
+
+  formAn.addEventListener('submit', async function (e) {
     e.preventDefault();
-    fehlerFeld.textContent = '';
+    var knopf = formAn.querySelector('.senden');
+    var meldung = document.getElementById('a-meldung');
+    melde(meldung, '', false);
     knopf.disabled = true;
     try {
-      var antwort = await fetch('/api/anmelden', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          bereich: bereichFeld.value,
-          kennwort: document.getElementById('kennwort').value
-        })
+      var r = await sende({
+        aktion: 'anmelden',
+        email: document.getElementById('a-email').value,
+        kennwort: document.getElementById('a-kennwort').value
       });
-      if (antwort.ok) { location.assign(ziel || '/kundenbereich'); return; }
-      if (antwort.status === 503) {
-        fehlerFeld.textContent = 'Der Zugang ist derzeit nicht konfiguriert. Bitte wenden Sie sich an Ihren Ansprechpartner.';
-      } else {
-        fehlerFeld.textContent = 'Bereich oder Kennwort stimmt nicht.';
-      }
+      if (r.ok) { location.assign(ziel || '/kundenbereich'); return; }
+      melde(meldung, textZuGrund(r.status, r.daten), true);
     } catch (fehler) {
-      fehlerFeld.textContent = 'Die Anmeldung war nicht möglich. Bitte versuchen Sie es noch einmal.';
+      melde(meldung, 'Die Anmeldung war nicht möglich. Bitte versuchen Sie es noch einmal.', true);
+    } finally {
+      knopf.disabled = false;
+    }
+  });
+
+  formEin.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var knopf = formEin.querySelector('.senden');
+    var meldung = document.getElementById('e-meldung');
+    var kw = document.getElementById('e-kennwort').value;
+    var kw2 = document.getElementById('e-kennwort2').value;
+    melde(meldung, '', false);
+
+    if (kw !== kw2) { melde(meldung, 'Die beiden Kennwörter stimmen nicht überein.', true); return; }
+    if (kw.length < 12) { melde(meldung, 'Das Kennwort braucht mindestens zwölf Zeichen.', true); return; }
+
+    knopf.disabled = true;
+    try {
+      var r = await sende({
+        aktion: 'einrichten',
+        bereich: bereichFeld.value,
+        einladung: document.getElementById('e-einladung').value,
+        email: document.getElementById('e-email').value,
+        kennwort: kw
+      });
+      if (r.ok) { location.assign(ziel || '/kundenbereich'); return; }
+      melde(meldung, textZuGrund(r.status, r.daten), true);
+    } catch (fehler) {
+      melde(meldung, 'Die Einrichtung war nicht möglich. Bitte versuchen Sie es noch einmal.', true);
     } finally {
       knopf.disabled = false;
     }

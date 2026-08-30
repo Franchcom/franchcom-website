@@ -1,0 +1,9 @@
+{
+  "name": "franchcom-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website Franchcom - franchcom.at. Statisch, mit Zugangsschutz fuer die Mandatsseiten.",
+  "dependencies": {
+    "@vercel/blob": "^2.3.0"
+  }
+}
