@@ -6,3 +6,14 @@ audit-report.json
 .env.*
 *.pem
 *.key
+
+# Uebergabeprotokolle des FranchLabs Tokensaver: Gespraechsmitschriften,
+# kein Code. Sie liegen hier bereits unversioniert herum und waren von
+# nichts abgedeckt - in einem OEFFENTLICHEN Repository ist das ein
+# einziges "git add ." vom Unglueck entfernt. In der Git-Historie waeren
+# sie unwiderruflich.
+HANDOVER.md
+HANDOVER*.md
+
+# Werkzeugkonfiguration der Arbeitsumgebung, gehoert nicht zur Website
+.claude/

@@ -1,4 +1,26 @@
 User-agent: *
 Allow: /
 
+# Mandatsseiten: nicht fuer die Allgemeinheit bestimmt.
+#
+# Sie waren bisher von "Allow: /" mit erfasst und damit ausdruecklich zum
+# Indexieren freigegeben - Kundenbereich, Vereinbarung, Uploadseiten und
+# Falleinsicht eines laufenden Mandats. Der Audit-Runner hat es gemeldet.
+#
+# Das hier ist eine Bitte an Suchmaschinen, kein Zugangsschutz: Wer die
+# Adresse kennt, kommt weiterhin an die Seite. Der Schutz gehoert davor,
+# nicht hierher. Zusaetzlich setzt die vercel.json fuer diese Pfade
+# X-Robots-Tag: noindex, weil ein Header wirkt, auch wenn jemand die
+# robots.txt uebergeht.
+Disallow: /kundenbereich
+Disallow: /kundenbereich.html
+Disallow: /vereinbarung
+Disallow: /vereinbarung.html
+Disallow: /upload-gabor
+Disallow: /upload-gabor.html
+Disallow: /upload-kristijan
+Disallow: /upload-kristijan.html
+Disallow: /ansehen-greenmig
+Disallow: /ansehen-greenmig.html
+
 Sitemap: https://franchcom.at/sitemap.xml
