@@ -121,9 +121,27 @@ export function checkRepoHygiene() {
     { code: "ENV_FILE_TRACKED", severity: "CRITICAL", ref: "repo/tracked-files" });
 }
 
+/**
+ * Geheimnissuche in den versionierten Dateien.
+ *
+ * WARUM audit/tests/ AUSGENOMMEN IST
+ * Die Tests des Sanitizers muessen beweisen, dass er Schluesselmaterial
+ * erkennt - dafuer stehen erfundene, formgleiche Beispiele in
+ * audit/tests/sanitize.test.mjs. Ohne diese Ausnahme meldet die Kontrolle
+ * genau diese Beispiele als Fund: das Werkzeug meldet sich selbst. Derselbe
+ * Fehler steckte in franchlabs und im Portfolio und hat dort die Pull
+ * Requests blockiert.
+ *
+ * Die Ausnahme ist bewusst ENG: nur audit/tests/, nicht audit/ insgesamt.
+ * audit/lib/ und audit/run.mjs werden weiter durchsucht - dort hat echtes
+ * Schluesselmaterial genauso wenig verloren wie im uebrigen Repository. Das
+ * wiegt hier besonders schwer: dieses Repository ist OEFFENTLICH.
+ */
 export function checkSecretsInRepo() {
   const id = "secret_scan";
-  const tracked = git(["ls-files"]).split("\n").filter((f) => f && !BINARY_EXT.test(f));
+  const tracked = git(["ls-files"]).split("\n")
+    .filter((f) => f && !BINARY_EXT.test(f))
+    .filter((f) => !f.startsWith("audit/tests/"));
   let patternHits = 0;
   let foreignJwt = 0;
   for (const f of tracked) {
