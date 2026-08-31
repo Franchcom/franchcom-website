@@ -290,13 +290,22 @@ export function checkShareTokenExposure() {
 
 /**
  * Bewertet die Mandats-Ebene aus einem gemeinsamen Abruf-Durchlauf:
- * - security:      Seiten sind ohne Authentifizierung erreichbar (Soll: 401/403)
+ * - security:      Seiten sind ohne Authentifizierung erreichbar (Soll: nein)
  * - privacy:       noindex-Anweisung vorhanden
  * - availability:  der fuer die Mandanten vorgesehene Zugang funktioniert
  *
- * ACHTUNG, gekoppelte Kontrollen: Sobald der geplante Zugriffsschutz kommt
- * (Implementation Plan, Modul 01), muessen access_control UND reachability
- * gemeinsam auf den neuen Soll-Zustand umgestellt werden.
+ * Der Zugriffsschutz ist da (middleware.js). Damit hat sich der Soll-Zustand
+ * geaendert: Die Schranke antwortet nicht mit 401, sondern leitet zur
+ * Anmeldeseite um. Beides ist zu, nur auf verschiedene Art -- deshalb gilt
+ * eine Umleitung ZUR ANMELDUNG hier als vorgesehen, jede andere Umleitung
+ * nicht. Ein 302 auf eine fremde Adresse waere kein Schutz, sondern ein
+ * Fehler, und darf nicht durchrutschen.
+ *
+ * Am 30.08.2026 stand hier statt der Schranke ein 503: Die Middleware
+ * schliesst ohne SESSION_SECRET zu, und die Variable fehlte in der
+ * Projektkonfiguration. Der Mandantenbereich war fuer alle geschlossen. 503
+ * bleibt deshalb ausdruecklich ein Befund - "zu wegen kaputt" ist nicht
+ * dasselbe wie "zu wegen Schutz".
  */
 export function checkMandatePages(mandate) {
   const out = [];
@@ -317,15 +326,29 @@ export function checkMandatePages(mandate) {
       : `${open.length} von ${entries.length} Mandatsseiten ohne Authentifizierung erreichbar; einziger Schutz ist die Unkenntnis der URL`,
     { code: "MANDATE_PAGE_WITHOUT_ACCESS_CONTROL", severity: "HIGH", ref: "mandate-pages" }));
 
-  const noindexMissing = open.filter(([, r]) =>
-    !/<meta\s+name="robots"\s+content="noindex/i.test(r.body));
-  out.push(result("mandate_noindex", "mandate_pages", "privacy", noindexMissing.length === 0,
-    noindexMissing.length === 0
-      ? `noindex auf allen ${open.length} erreichbaren Mandatsseiten gesetzt`
-      : `${noindexMissing.length} Mandatsseiten ohne noindex (${noindexMissing.map(([p]) => opaqueId(p)).join(", ")})`,
-    { code: "NOINDEX_MISSING_ON_MANDATE_PAGE", severity: "MEDIUM", ref: "mandate-pages" }));
+  // Steht die Schranke, liefert keine Seite mehr einen Rumpf aus - dann ist
+  // ueber noindex nichts zu sagen. Ein gruener Haken ueber null geprueften
+  // Seiten waere eine Aussage, die niemand gemessen hat.
+  if (open.length === 0) {
+    out.push(skipped("mandate_noindex", "mandate_pages", "privacy",
+      "Keine Mandatsseite wird ohne Anmeldung ausgeliefert - noindex nicht pruefbar"));
+  } else {
+    const noindexMissing = open.filter(([, r]) =>
+      !/<meta\s+name="robots"\s+content="noindex/i.test(r.body));
+    out.push(result("mandate_noindex", "mandate_pages", "privacy", noindexMissing.length === 0,
+      noindexMissing.length === 0
+        ? `noindex auf allen ${open.length} erreichbaren Mandatsseiten gesetzt`
+        : `${noindexMissing.length} Mandatsseiten ohne noindex (${noindexMissing.map(([p]) => opaqueId(p)).join(", ")})`,
+      { code: "NOINDEX_MISSING_ON_MANDATE_PAGE", severity: "MEDIUM", ref: "mandate-pages" }));
+  }
 
-  const broken = entries.filter(([, r]) => r === null || (r.status !== 200 && r.status !== 401 && r.status !== 403));
+  /** Eine Umleitung genau zur Anmeldeseite - die Schranke, nicht ein Irrlaeufer. */
+  const zurAnmeldung = (r) =>
+    [301, 302, 303, 307, 308].includes(r.status)
+    && /^\/anmelden(\.html)?(\?|$)/.test(r.headers?.location ?? "");
+
+  const vorgesehen = (r) => r.status === 200 || r.status === 401 || r.status === 403 || zurAnmeldung(r);
+  const broken = entries.filter(([, r]) => r === null || !vorgesehen(r));
   out.push(result("mandate_reachable", "mandate_pages", "availability", broken.length === 0,
     broken.length === 0
       ? `${entries.length} Mandatsseiten antworten wie vorgesehen`
