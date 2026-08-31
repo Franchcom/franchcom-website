@@ -107,7 +107,7 @@ test("finding_id ist deterministisch und ueber Laeufe stabil", () => {
   const a = findingId("public_site", "CSP_MISSING", "public/*");
   const b = findingId("public_site", "CSP_MISSING", "public/*");
   assert.equal(a, b);
-  assert.match(a, /^franchcom-website:public_site:CSP_MISSING:[0-9a-f]{8}$/);
+  assert.match(a, /^franchcom-website:public_site:csp_missing:[0-9a-f]{8}$/);
 });
 
 test("nur fehlgeschlagene Kontrollen erzeugen Findings, Severity wird gezaehlt", () => {
@@ -177,3 +177,22 @@ test("alle Codes der Liste erfuellen das Vertragsmuster", () => {
   assert.equal(isValidCode("nicht_gross"), false);
   assert.equal(isValidCode("UNBEKANNTER_CODE"), false);
 });
+
+// --------------------------------------------------------- Fundkennung
+
+/**
+ * Die Fundkennung muss dem Zeichenvorrat des Schemas genuegen.
+ *
+ * Ohne diese Pruefung faellt der Fehler nicht auf: Ein Lauf ohne Fund traegt
+ * gar keine Kennung und wird anstandslos angenommen. Erst wenn wirklich etwas
+ * gefunden wird -- also genau dann, wenn die Meldung zaehlt -- weist das
+ * Security Center sie mit 422 ab.
+ */
+test("Fundkennung genuegt dem Zeichenvorrat des Schemas", () => {
+  const muster = /^[a-z0-9:_-]{3,160}$/;
+  for (const code of Object.keys(CODES)) {
+    const id = findingId("mein_modul", code, "irgendein/pfad");
+    assert.match(id, muster, `${code} ergibt eine unzulaessige Kennung: ${id}`);
+  }
+});
+

@@ -17,3 +17,5 @@ HANDOVER*.md
 
 # Werkzeugkonfiguration der Arbeitsumgebung, gehoert nicht zur Website
 .claude/
+.vercel
+.env*

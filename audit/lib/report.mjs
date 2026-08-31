@@ -59,7 +59,13 @@ export const FORCED_GRAY = ["backup"];
 
 /** finding_id = app_id:module:code:hash8(component_ref) -- stabil ueber Laeufe. */
 export function findingId(module, code, componentRef) {
-  return `${APP_ID}:${module}:${code}:${hash8(componentRef)}`;
+  // Das Schema erlaubt nur [a-z0-9:_-]{3,160}. Codes sind per Vertrag
+  // GROSSGESCHRIEBEN -- ungefiltert uebernommen ergibt das eine Kennung, die
+  // das Security Center mit 422 abweist. Und zwar nur dann, wenn es tatsaechlich
+  // einen Fund gibt: Ein ruhiger Lauf hat gar keine Kennung und kommt durch.
+  // Genau so ist der Fehler monatelang unbemerkt geblieben.
+  const sauber = (t) => String(t).toLowerCase().replace(/[^a-z0-9:_-]/g, "-");
+  return sauber(`${APP_ID}:${module}:${code}:${hash8(componentRef)}`).slice(0, 160);
 }
 
 /**
