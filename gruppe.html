@@ -37,216 +37,7 @@
   ]
 }
 </script>
-<style>
-  :root {
-    /* light (warm paper) — a chosen neutral biased toward the petrol accent */
-    --bg: #f4efe6;
-    --bg-raise: #ece5d7;
-    --ink: #1b2523;
-    --muted: #6c736e;
-    --hair: rgba(27, 37, 35, 0.14);
-    --hair-strong: rgba(27, 37, 35, 0.26);
-    --accent: #1f6a63;      /* Franchcom petrol */
-    --accent-ink: #ffffff;
-    --shadow: rgba(27, 37, 35, 0.10);
-
-    /* division identity colours (from the real brand set) */
-    --c-it: #4f7f9a;
-    --c-bb: #ab5548;
-    --c-cap: #a6864a;
-    --c-con: #7d7b8b;
-    --c-agro: #74814f;
-
-    --serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
-    --sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-
-    --maxw: 1080px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0c100f;
-      --bg-raise: #141a19;
-      --ink: #ece7dd;
-      --muted: #8f9793;
-      --hair: rgba(236, 231, 221, 0.12);
-      --hair-strong: rgba(236, 231, 221, 0.24);
-      --accent: #56a79e;
-      --accent-ink: #06110f;
-      --shadow: rgba(0, 0, 0, 0.45);
-      --c-it: #7d9bb0;
-      --c-bb: #c17264;
-      --c-cap: #c7a96b;
-      --c-con: #9a98a8;
-      --c-agro: #97a26c;
-    }
-  }
-  /* explicit toggle wins in both directions */
-  :root[data-theme="light"] {
-    --bg: #f4efe6; --bg-raise: #ece5d7; --ink: #1b2523; --muted: #6c736e;
-    --hair: rgba(27,37,35,0.14); --hair-strong: rgba(27,37,35,0.26);
-    --accent: #1f6a63; --accent-ink: #ffffff; --shadow: rgba(27,37,35,0.10);
-    --c-it:#4f7f9a; --c-bb:#ab5548; --c-cap:#a6864a; --c-con:#7d7b8b; --c-agro:#74814f;
-  }
-  :root[data-theme="dark"] {
-    --bg: #0c100f; --bg-raise: #141a19; --ink: #ece7dd; --muted: #8f9793;
-    --hair: rgba(236,231,221,0.12); --hair-strong: rgba(236,231,221,0.24);
-    --accent: #56a79e; --accent-ink: #06110f; --shadow: rgba(0,0,0,0.45);
-    --c-it:#7d9bb0; --c-bb:#c17264; --c-cap:#c7a96b; --c-con:#9a98a8; --c-agro:#97a26c;
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 3rem); }
-
-  a { color: inherit; text-decoration: none; }
-  .eyebrow {
-    font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase;
-    color: var(--muted); font-weight: 600;
-  }
-
-  /* ---------- header ---------- */
-  header {
-    position: sticky; top: 0; z-index: 20;
-    background: color-mix(in srgb, var(--bg) 86%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--hair);
-  }
-  .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 1.5rem; }
-  .brand { display: flex; align-items: center; gap: 0.6rem; font-family: var(--serif); font-size: 1.35rem; letter-spacing: 0.02em; }
-  .brand .mark { width: 10px; height: 10px; transform: rotate(45deg); background: var(--accent); border-radius: 1px; }
-  nav.links { display: flex; gap: 2rem; font-size: 0.9rem; color: var(--muted); }
-  nav.links a { position: relative; padding: 0.25rem 0; transition: color 0.2s; }
-  nav.links a:hover { color: var(--ink); }
-  .bar-right { display: flex; align-items: center; gap: 1.1rem; }
-  .langs { display: flex; gap: 0.15rem; }
-  .lang-btn { border: 1px solid var(--hair); background: transparent; color: var(--muted);
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; padding: 0.35rem 0.5rem;
-    border-radius: 8px; cursor: pointer; font-family: inherit; line-height: 1; transition: color .2s, border-color .2s; }
-  .lang-btn:hover { color: var(--ink); }
-  .lang-btn.active { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
-  .theme-toggle {
-    display: inline-grid; place-items: center; width: 34px; height: 34px;
-    border: 1px solid var(--hair); border-radius: 999px; background: transparent;
-    color: var(--muted); cursor: pointer; transition: color 0.2s, border-color 0.2s;
-  }
-  .theme-toggle:hover { color: var(--ink); border-color: var(--hair-strong); }
-  .theme-toggle .moon { display: none; }
-  :root[data-theme="dark"] .theme-toggle .sun { display: none; }
-  :root[data-theme="dark"] .theme-toggle .moon { display: block; }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .theme-toggle .sun { display: none; }
-    :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
-  }
-  @media (max-width: 760px) { nav.links { display: none; } }
-
-  /* ---------- hero ---------- */
-  .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(2.5rem, 5vw, 4rem); }
-  .hero .eyebrow { display: block; margin-bottom: 1.6rem; }
-  .hero h1 {
-    font-family: var(--serif); font-weight: 500;
-    font-size: clamp(2.5rem, 6vw, 4.3rem); line-height: 1.05; letter-spacing: -0.01em;
-    margin: 0; text-wrap: balance; max-width: 15ch;
-  }
-  .hero .lead {
-    margin: 1.8rem 0 0; max-width: 56ch; font-size: 1.1rem; color: var(--ink);
-    opacity: 0.86;
-  }
-  .metrics { display: flex; flex-wrap: wrap; gap: 2.5rem; margin-top: 2.8rem; padding-top: 1.8rem; border-top: 1px solid var(--hair); }
-  .metric .n { font-family: var(--serif); font-size: 2rem; line-height: 1; }
-  .metric .l { font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
-
-  /* ---------- section frame ---------- */
-  section.block { padding: clamp(3rem, 6vw, 5rem) 0; border-top: 1px solid var(--hair); }
-  .sec-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2.5rem; }
-  .sec-head h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); margin: 0; }
-  .sec-head .count { margin-left: auto; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em; }
-
-  /* ---------- division groups ---------- */
-  .tier-label {
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
-    font-weight: 600; margin: 2.2rem 0 0.4rem;
-  }
-  .tier-label:first-of-type { margin-top: 0; }
-  .tier-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 1rem; opacity: 0.85; }
-
-  .divs { display: flex; flex-direction: column; }
-  .div-row {
-    display: grid; grid-template-columns: 1fr auto; gap: 1rem 2rem; align-items: center;
-    padding: 1.5rem 1.4rem; border-radius: 10px;
-    border: 1px solid transparent;
-    position: relative; transition: background 0.25s, border-color 0.25s, transform 0.25s;
-  }
-  .div-row::before {
-    content: ""; position: absolute; left: 0; top: 0.9rem; bottom: 0.9rem; width: 3px; border-radius: 3px;
-    background: var(--c); transition: top 0.25s, bottom 0.25s, width 0.25s;
-  }
-  a.div-row:hover {
-    background: var(--bg-raise); border-color: var(--hair);
-  }
-  a.div-row:hover::before { top: 0.5rem; bottom: 0.5rem; width: 4px; }
-  .div-row.soon { opacity: 0.92; }
-  .div-main { min-width: 0; }
-  .div-name { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; }
-  .div-name h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.3rem, 2.3vw, 1.7rem); margin: 0; letter-spacing: -0.005em; }
-  .div-name .core { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c); font-weight: 700; }
-  .div-tag { color: var(--muted); margin: 0.5rem 0 0; max-width: 54ch; font-size: 0.98rem; }
-  .div-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.55rem; text-align: right; white-space: nowrap; }
-  .status { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; padding: 0.28rem 0.7rem; border-radius: 999px; }
-  .status.on { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); }
-  .status.soon { border: 1px solid var(--hair-strong); color: var(--muted); }
-  .go { font-size: 0.86rem; color: var(--muted); display: inline-flex; align-items: center; gap: 0.35rem; transition: color 0.2s, gap 0.2s; }
-  a.div-row:hover .go { color: var(--ink); gap: 0.55rem; }
-  .go.ext::after { content: "↗"; font-size: 0.9em; }
-  .go.int::after { content: "→"; font-size: 0.95em; }
-  @media (max-width: 640px) {
-    .div-row { grid-template-columns: 1fr; }
-    .div-meta { flex-direction: row; align-items: center; justify-content: flex-start; }
-  }
-
-  /* ---------- unternehmen ---------- */
-  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
-  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; gap: 2rem; } }
-  .col .k { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.8rem; }
-  .col p { margin: 0; color: var(--ink); opacity: 0.85; font-size: 0.98rem; }
-  .credo { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 500; line-height: 1.3; text-wrap: balance; max-width: 24ch; margin: 0 0 3rem; }
-
-  /* ---------- kontakt ---------- */
-  .contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2.5rem; align-items: end; }
-  @media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
-  .contact h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 0.8rem; }
-  .contact .who { color: var(--muted); }
-  .cinfo { display: flex; flex-direction: column; gap: 0.9rem; }
-  .cinfo a, .cinfo div { display: flex; justify-content: space-between; gap: 1.5rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--hair); font-size: 0.98rem; }
-  .cinfo .cl { color: var(--muted); font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; }
-  .cinfo a:hover .cv { color: var(--accent); }
-
-  /* ---------- footer ---------- */
-  footer { border-top: 1px solid var(--hair); padding: 2.5rem 0 3.5rem; }
-  .foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem 1.5rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--muted); }
-  .foot .roster { letter-spacing: 0.06em; }
-  .foot .roster a { transition: color 0.2s; }
-  .foot .roster a:hover { color: var(--ink); }
-  .foot-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
-  .foot-links a { transition: color 0.2s; }
-  .foot-links a:hover { color: var(--ink); }
-
-  /* ---------- entrance motion ---------- */
-  .rise { opacity: 0; transform: translateY(14px); animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
-  .rise.d1 { animation-delay: 0.06s; } .rise.d2 { animation-delay: 0.14s; }
-  .rise.d3 { animation-delay: 0.22s; } .rise.d4 { animation-delay: 0.3s; }
-  @keyframes rise { to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .rise { animation: none; opacity: 1; transform: none; } }
-</style>
+    <link rel="stylesheet" href="/stil/gruppe.css" />
 </head>
 <body>
 
@@ -302,21 +93,21 @@
       <p class="tier-label" data-i18n="tier1_label">Unter dem Franchcom‑Dach</p>
       <p class="tier-note" data-i18n="tier1_note">Das Fundament der Gruppe — direkt auf franchcom.at, jeder Bereich mit eigener Adresse.</p>
       <div class="divs">
-        <a class="div-row" style="--c: var(--c-it)" href="/">
+        <a class="div-row farbe-it" href="/">
           <div class="div-main">
             <div class="div-name"><h3>Franchcom IT</h3><span class="core" data-i18n="it_core">Kerngeschäft</span></div>
             <p class="div-tag" data-i18n="it_tag">IT‑Dienstleistungen, Infrastruktur und laufende Betreuung für Unternehmen.</p>
           </div>
           <div class="div-meta"><span class="status on" data-i18n="status_on">Aktiv</span><span class="go int">franchcom.at</span></div>
         </a>
-        <a class="div-row" style="--c: var(--c-con)" href="https://consulting.franchcom.at" target="_blank" rel="noopener">
+        <a class="div-row farbe-con" href="https://consulting.franchcom.at" target="_blank" rel="noopener">
           <div class="div-main">
             <div class="div-name"><h3>Franchcom Consulting</h3></div>
             <p class="div-tag" data-i18n="con_tag">Recherche, Bewertung und strategische Beratung für Unternehmen, Eigentümer und Investoren.</p>
           </div>
           <div class="div-meta"><span class="status on" data-i18n="status_on">Aktiv</span><span class="go ext">consulting.franchcom.at</span></div>
         </a>
-        <div class="div-row soon" style="--c: var(--c-agro)">
+        <div class="div-row soon farbe-agro" >
           <div class="div-main">
             <div class="div-name"><h3>Franchcom Agro</h3></div>
             <p class="div-tag" data-i18n="agro_tag">Landwirtschaftliche Projekte und Flächen.</p>
@@ -328,14 +119,14 @@
       <p class="tier-label" data-i18n="tier2_label">Eigenständige Marken</p>
       <p class="tier-note" data-i18n="tier2_note">Über die IT hinausgewachsen — mit eigenem Auftritt und eigener Domain.</p>
       <div class="divs">
-        <a class="div-row" style="--c: var(--c-bb)" href="https://blackboxer.at" target="_blank" rel="noopener">
+        <a class="div-row farbe-bb" href="https://blackboxer.at" target="_blank" rel="noopener">
           <div class="div-main">
             <div class="div-name"><h3>BlackBoxer</h3></div>
             <p class="div-tag" data-i18n="bb_tag">Mobile Videoüberwachung und Sicherheitstechnik — entstanden aus dem IT‑Geschäft, heute eigene Marke.</p>
           </div>
           <div class="div-meta"><span class="status on" data-i18n="status_on">Aktiv</span><span class="go ext">blackboxer.at</span></div>
         </a>
-        <a class="div-row" style="--c: var(--c-cap)" href="https://franchcom.capital" target="_blank" rel="noopener">
+        <a class="div-row farbe-cap" href="https://franchcom.capital" target="_blank" rel="noopener">
           <div class="div-main">
             <div class="div-name"><h3>Franchcom Capital</h3></div>
             <p class="div-tag" data-i18n="cap_tag">Vertrauliche Off‑Market‑Investments, Trophy Assets und Entwicklungsprojekte.</p>
@@ -398,150 +189,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var root = document.documentElement, KEY = 'fc_theme';
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    function apply(t) {
-      if (t === 'light' || t === 'dark') root.setAttribute('data-theme', t);
-      else root.removeAttribute('data-theme');
-    }
-    var saved = null;
-    try { saved = localStorage.getItem(KEY); } catch (e) {}
-    if (saved) apply(saved);
-    function current() {
-      return root.getAttribute('data-theme') || (mq.matches ? 'dark' : 'light');
-    }
-    var btn = document.getElementById('themeToggle');
-    btn.addEventListener('click', function () {
-      var next = current() === 'dark' ? 'light' : 'dark';
-      apply(next);
-      try { localStorage.setItem(KEY, next); } catch (e) {}
-    });
-  })();
-
-  // --- Sprache DE / EN / UA / HU ---
-  (function () {
-    var DICT = {
-      en: {
-        nav_felder: "Business areas", nav_unternehmen: "Company", nav_kontakt: "Contact",
-        hero_eyebrow: "Corporate group · Austria",
-        hero_h1: "One company, several disciplines.",
-        hero_lead: "Franchcom is an Austrian corporate group. What began as an IT service provider today spans several independent business areas — each with its own brand, its own clients and the same commitment to reliability.",
-        m1: "Business areas", m2: "Active", m3: "Grown from IT",
-        s1_h2: "Business areas", s1_count: "Five areas, one house",
-        tier1_label: "Under the Franchcom roof",
-        tier1_note: "The foundation of the group — directly on franchcom.at, each area with its own address.",
-        it_core: "Core business",
-        it_tag: "IT services, infrastructure and ongoing support for companies.",
-        con_tag: "Research, assessment and strategic consulting for companies, owners and investors.",
-        agro_tag: "Agricultural projects and land.",
-        tier2_label: "Independent brands",
-        tier2_note: "Grown beyond IT — with their own presence and their own domain.",
-        bb_tag: "Mobile video surveillance and security technology — born from the IT business, today its own brand.",
-        cap_tag: "Confidential off-market investments, trophy assets and development projects.",
-        status_on: "Active", status_soon: "In preparation",
-        s2_h2: "Company",
-        credo: "Grown, not founded. Each area emerged from a concrete demand — not from a business plan.",
-        col1_k: "Origin",
-        col1_p: "Franchcom began as a classic IT service provider. This core business still carries the group today.",
-        col2_k: "Own brands",
-        col2_p: "When a business area grows beyond IT, it gets its own brand and its own presence — like BlackBoxer and Franchcom Capital.",
-        col3_k: "Standard",
-        col3_p: "Different industries, the same standard: reliability, discretion and long-term relationships.",
-        k_h2: "Contact", k_who: "For enquiries about individual business areas or the group.",
-        ci_ansprech: "Contact person", ci_email: "Email", ci_tel: "Phone",
-        foot_start: "Home", foot_login: "Client login", foot_impressum: "Imprint", foot_datenschutz: "Privacy"
-      },
-      uk: {
-        nav_felder: "Напрями діяльності", nav_unternehmen: "Компанія", nav_kontakt: "Контакт",
-        hero_eyebrow: "Група компаній · Австрія",
-        hero_h1: "Одна компанія, кілька напрямів.",
-        hero_lead: "Franchcom — це австрійська група компаній. Те, що починалося як ІТ-послуги, сьогодні охоплює кілька самостійних напрямів — кожен зі своїм брендом, своїми клієнтами й однаковою відданістю надійності.",
-        m1: "Напрями діяльності", m2: "Активні", m3: "Виросло з ІТ",
-        s1_h2: "Напрями діяльності", s1_count: "П'ять напрямів, один дім",
-        tier1_label: "Під дахом Franchcom",
-        tier1_note: "Основа групи — безпосередньо на franchcom.at, кожен напрям зі своєю адресою.",
-        it_core: "Основний бізнес",
-        it_tag: "ІТ-послуги, інфраструктура та постійна підтримка для компаній.",
-        con_tag: "Дослідження, оцінка та стратегічне консультування для компаній, власників та інвесторів.",
-        agro_tag: "Сільськогосподарські проєкти та угіддя.",
-        tier2_label: "Самостійні бренди",
-        tier2_note: "Виросли за межі ІТ — з власним іміджем і власним доменом.",
-        bb_tag: "Мобільне відеоспостереження та охоронна техніка — виникло з ІТ-бізнесу, сьогодні власний бренд.",
-        cap_tag: "Конфіденційні позаринкові інвестиції, трофейні активи та девелоперські проєкти.",
-        status_on: "Активно", status_soon: "У підготовці",
-        s2_h2: "Компанія",
-        credo: "Виросло, а не засновано. Кожен напрям виник із конкретного попиту — а не з бізнес-плану.",
-        col1_k: "Походження",
-        col1_p: "Franchcom починався як класичний постачальник ІТ-послуг. Цей основний бізнес тримає групу донині.",
-        col2_k: "Власні бренди",
-        col2_p: "Коли напрям виростає за межі ІТ, він отримує власний бренд і власний імідж — як BlackBoxer і Franchcom Capital.",
-        col3_k: "Стандарт",
-        col3_p: "Різні галузі, однаковий стандарт: надійність, конфіденційність і довгострокові відносини.",
-        k_h2: "Контакт", k_who: "Для запитів щодо окремих напрямів або групи загалом.",
-        ci_ansprech: "Контактна особа", ci_email: "Ел. пошта", ci_tel: "Телефон",
-        foot_start: "Головна", foot_login: "Вхід для клієнтів", foot_impressum: "Вихідні дані", foot_datenschutz: "Конфіденційність"
-      },
-      hu: {
-        nav_felder: "Üzletágak", nav_unternehmen: "Vállalat", nav_kontakt: "Kapcsolat",
-        hero_eyebrow: "Vállalatcsoport · Ausztria",
-        hero_h1: "Egy vállalat, több szakterület.",
-        hero_lead: "A Franchcom egy osztrák vállalatcsoport. Ami IT-szolgáltatóként indult, ma több önálló üzletágat foglal magában — mindegyik saját márkával, saját ügyfelekkel és ugyanazzal a megbízhatóság iránti igénnyel.",
-        m1: "Üzletágak", m2: "Aktív", m3: "IT-ből nőtt ki",
-        s1_h2: "Üzletágak", s1_count: "Öt terület, egy ház",
-        tier1_label: "A Franchcom tető alatt",
-        tier1_note: "A csoport alapja — közvetlenül a franchcom.at oldalon, minden terület saját címmel.",
-        it_core: "Alaptevékenység",
-        it_tag: "IT-szolgáltatások, infrastruktúra és folyamatos támogatás vállalatok számára.",
-        con_tag: "Kutatás, értékelés és stratégiai tanácsadás vállalatoknak, tulajdonosoknak és befektetőknek.",
-        agro_tag: "Mezőgazdasági projektek és területek.",
-        tier2_label: "Önálló márkák",
-        tier2_note: "Az IT-n túlnőve — saját megjelenéssel és saját domainnel.",
-        bb_tag: "Mobil videómegfigyelés és biztonságtechnika — az IT-üzletágból született, ma önálló márka.",
-        cap_tag: "Bizalmas, piacon kívüli befektetések, trófea-eszközök és fejlesztési projektek.",
-        status_on: "Aktív", status_soon: "Előkészületben",
-        s2_h2: "Vállalat",
-        credo: "Kinőtt, nem alapított. Minden terület konkrét igényből született — nem üzleti tervből.",
-        col1_k: "Eredet",
-        col1_p: "A Franchcom klasszikus IT-szolgáltatóként indult. Ez az alaptevékenység máig hordozza a csoportot.",
-        col2_k: "Saját márkák",
-        col2_p: "Ha egy üzletág túlnő az IT-n, saját márkát és saját megjelenést kap — mint a BlackBoxer és a Franchcom Capital.",
-        col3_k: "Igényesség",
-        col3_p: "Különböző iparágak, azonos mérce: megbízhatóság, diszkréció és hosszú távú kapcsolatok.",
-        k_h2: "Kapcsolat", k_who: "Az egyes üzletágakkal vagy a csoporttal kapcsolatos megkeresésekhez.",
-        ci_ansprech: "Kapcsolattartó", ci_email: "E-mail", ci_tel: "Telefon",
-        foot_start: "Főoldal", foot_login: "Ügyfélbejelentkezés", foot_impressum: "Impresszum", foot_datenschutz: "Adatvédelem"
-      }
-    };
-    var DE = {};
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      DE[el.getAttribute('data-i18n')] = el.textContent.trim();
-    });
-    DICT.de = DE;
-    function setLang(l) {
-      if (!DICT[l]) l = 'de';
-      document.documentElement.lang = l;
-      document.querySelectorAll('[data-i18n]').forEach(function (el) {
-        var k = el.getAttribute('data-i18n');
-        if (DICT[l][k] !== undefined) el.textContent = DICT[l][k];
-      });
-      document.querySelectorAll('.lang-btn').forEach(function (b) {
-        b.classList.toggle('active', b.dataset.lang === l);
-      });
-      try { localStorage.setItem('fc_gruppe_lang', l); } catch (e) {}
-    }
-    document.querySelectorAll('.lang-btn').forEach(function (b) {
-      b.addEventListener('click', function () { setLang(b.dataset.lang); });
-    });
-    var start = 'de';
-    try {
-      var s = localStorage.getItem('fc_gruppe_lang');
-      if (s) start = s;
-      else { var n = (navigator.language || 'de').slice(0, 2); if (DICT[n]) start = n; }
-    } catch (e) {}
-    setLang(start);
-  })();
-</script>
+    <script src="/skript/gruppe.js" defer></script>
 </body>
 </html>

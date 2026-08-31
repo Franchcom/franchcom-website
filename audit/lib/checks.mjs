@@ -279,10 +279,17 @@ export function checkShareTokenExposure() {
     const hits = text.match(/portal\.franchcom\.at\/s\/[A-Za-z0-9]+/g) || [];
     if (hits.length) { files++; links += hits.length; }
   }
+  // Der Wortlaut war ueberholt: Er sprach von "oeffentlichen" Links in
+  // "ausgeliefertem" HTML. Seit die Mandatsseiten hinter der Anmeldung liegen,
+  // sind sie das nicht mehr. Der Befund bleibt trotzdem stehen, und zwar mit
+  // unveraenderter Schwere - denn das Tor nimmt die Links nicht zurueck: Sie
+  // stehen dauerhaft in der Git-History, und wer einen hat, kommt am Tor
+  // vorbei. Zu schliessen ist er nicht hier, sondern im Portal, indem die
+  // Freigaben zurueckgezogen und neu ausgestellt werden.
   return result(id, "mandate_pages", "security", links === 0,
     links === 0
-      ? "Keine Portal-Share-Links in ausgeliefertem HTML"
-      : `${links} oeffentliche Portal-Share-Links in ${files} ausgelieferten Seiten; Zugriffsumfang der Shares unbelegt, Links zusaetzlich dauerhaft in der Git-History`,
+      ? "Keine Portal-Share-Links im versionierten HTML"
+      : `${links} Portal-Share-Links im versionierten HTML von ${files} Mandatsseiten; dauerhaft in der Git-History, Zugriffsumfang unbelegt - nur durch Zurueckziehen im Portal zu schliessen`,
     { code: "SHARE_TOKEN_IN_PUBLIC_HTML", severity: "HIGH", ref: "mandate-pages" });
 }
 
@@ -420,11 +427,23 @@ export async function checkSitemapExclusion() {
 
 // --------------------------------------------------------- data_integrity
 
-/** Liest die Backend-Konfiguration aus der versionierten Bestaetigungsseite. */
+/**
+ * Liest die Backend-Konfiguration der Bestaetigungsseite.
+ *
+ * Seite UND zugehoeriges Skript werden gelesen. Frueher genuegte die Seite,
+ * weil das Skript eingebettet darin stand. Seit es fuer die Inhaltsrichtlinie
+ * nach skript/vereinbarung.js ausgezogen ist, faende eine Suche allein im HTML
+ * den REST-Aufruf nicht mehr - und meldete eine fehlende Anbindung, wo nur die
+ * Datei gewechselt hat. Ein Befund, der aus der eigenen Aufraeumarbeit
+ * entsteht, ist schlimmer als keiner: Er lehrt, Befunde zu ignorieren.
+ */
 export function confirmationConfig() {
-  const file = "vereinbarung.html";
-  if (!existsSync(file)) return null;
-  const text = readFileSync(file, "utf8");
+  const dateien = ["vereinbarung.html", "skript/vereinbarung.js"];
+  if (!existsSync(dateien[0])) return null;
+  const text = dateien
+    .filter((f) => existsSync(f))
+    .map((f) => readFileSync(f, "utf8"))
+    .join("\n");
   const urls = [...new Set([...text.matchAll(/https:\/\/[a-z0-9]+\.supabase\.co/g)].map((m) => m[0]))];
   return {
     urls,
